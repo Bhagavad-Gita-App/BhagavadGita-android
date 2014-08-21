@@ -1,5 +1,6 @@
 package com.floydpink.android.bhagavadgita;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -56,7 +57,9 @@ public class ChapterDetailFragment extends Fragment {
 
         // Show the chapter as text in a TextView.
         if (mChapter != null) {
-            ((TextView) rootView.findViewById(R.id.chapter_detail)).setText(mChapter.getTitle());
+            TextView textView = (TextView) rootView.findViewById(R.id.chapter_detail);
+            textView.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/AnjaliOldLipi.ttf"));
+            textView.setText(mChapter.getTitle());
         }
 
         return rootView;
