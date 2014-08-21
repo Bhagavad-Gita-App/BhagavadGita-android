@@ -7,8 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.floydpink.android.bhagavadgita.data.BookData;
+import com.floydpink.android.bhagavadgita.models.Chapter;
 
-import com.floydpink.android.bhagavadgita.dummy.DummyContent;
 
 /**
  * A fragment representing a single Chapter detail screen.
@@ -24,9 +25,9 @@ public class ChapterDetailFragment extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
 
     /**
-     * The dummy content this fragment is presenting.
+     * The chapter this fragment is presenting.
      */
-    private DummyContent.DummyItem mItem;
+    private Chapter mChapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -40,10 +41,11 @@ public class ChapterDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
+            // Load the chapter specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mChapter = BookData.Chapters.get(getArguments().getString(ARG_ITEM_ID));
+
         }
     }
 
@@ -52,9 +54,9 @@ public class ChapterDetailFragment extends Fragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_chapter_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.chapter_detail)).setText(mItem.content);
+        // Show the chapter as text in a TextView.
+        if (mChapter != null) {
+            ((TextView) rootView.findViewById(R.id.chapter_detail)).setText(mChapter.getTitle());
         }
 
         return rootView;

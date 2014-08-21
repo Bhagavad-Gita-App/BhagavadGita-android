@@ -8,7 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
-import com.floydpink.android.bhagavadgita.dummy.DummyContent;
+import com.floydpink.android.bhagavadgita.data.BookData;
+import com.floydpink.android.bhagavadgita.models.Chapter;
 
 /**
  * A list fragment representing a list of Chapters. This fragment
@@ -72,11 +73,11 @@ public class ChapterListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
+        setListAdapter(new ArrayAdapter<Chapter>(
                 getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
-                DummyContent.ITEMS));
+                BookData.Book.getChapters()));
     }
 
     @Override
@@ -116,7 +117,7 @@ public class ChapterListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+        mCallbacks.onItemSelected(BookData.Book.getChapters().get(position - 1).getName());
     }
 
     @Override
