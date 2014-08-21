@@ -8,6 +8,7 @@ import java.util.List;
 public class Chapter {
     private String Name;
     private String Title;
+    private String Subtitle;
     private int ChapterCount;
     private String Intro;
     private String Outro;
@@ -27,6 +28,14 @@ public class Chapter {
 
     public void setTitle(String title) {
         Title = title;
+    }
+
+    public String getSubtitle() {
+        return Subtitle;
+    }
+
+    public void setSubtitle(String subtitle) {
+        Subtitle = subtitle;
     }
 
     public int getChapterCount() {

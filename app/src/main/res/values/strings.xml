@@ -3,5 +3,6 @@
 
     <string name="app_name">Bhagavad Gita</string>
     <string name="title_chapter_detail">Chapter Detail</string>
+    <string name="loading">Loading\u2026</string>
 
 </resources>

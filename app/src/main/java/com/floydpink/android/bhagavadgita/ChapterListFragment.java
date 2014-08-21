@@ -71,9 +71,7 @@ public class ChapterListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setListAdapter(new ChapterArrayAdapter<Chapter>(
-                getActivity(),
-                BookData.Book.getChapters()));
+        setListAdapter(new ChapterArrayAdapter(getActivity()));
     }
 
     @Override

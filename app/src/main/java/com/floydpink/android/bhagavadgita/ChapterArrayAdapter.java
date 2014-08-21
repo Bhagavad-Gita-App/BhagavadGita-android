@@ -5,27 +5,45 @@ import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.floydpink.android.bhagavadgita.data.BookData;
+
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hari on 8/21/14.
  */
-public class ChapterArrayAdapter<T> extends ArrayAdapter<T> {
+public class ChapterArrayAdapter extends SimpleAdapter {
 
-    public ChapterArrayAdapter(Context context, List<T> objects) {
-        super(context, android.R.layout.simple_list_item_activated_1, android.R.id.text1, objects);
+    private Context Context;
+
+    public Context getContext() {
+        return Context;
     }
 
-    public ChapterArrayAdapter(Context context, T[] objects) {
-        super(context, android.R.layout.simple_list_item_activated_1, android.R.id.text1, objects);
+    public void setContext(Context context) {
+        Context = context;
     }
 
-    @Override public View getView(int position, View convertView, ViewGroup parent) {
+    public ChapterArrayAdapter(Context context) {
+        super(context, BookData.ChapterList,
+                R.layout.chapter_list_item,
+                new String[]{"subtitle", "title"},
+                new int[]{android.R.id.text1, android.R.id.text2});
+        setContext(context);
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
+        Typeface anjaliOldLipi = Typeface.createFromAsset(getContext().getAssets(), "fonts/AnjaliOldLipi.ttf");
         TextView textView = (TextView) view.findViewById(android.R.id.text1);
-        textView.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/AnjaliOldLipi.ttf"));
+        textView.setTypeface(anjaliOldLipi);
+        textView = (TextView) view.findViewById(android.R.id.text2);
+        textView.setTypeface(anjaliOldLipi);
         return view;
     }
 }
