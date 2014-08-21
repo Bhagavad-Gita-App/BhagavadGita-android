@@ -69,4 +69,8 @@ public class Chapter {
         Outro = outro;
         Contents = contents;
     }
+
+    @Override public String toString() {
+        return Title;
+    }
 }

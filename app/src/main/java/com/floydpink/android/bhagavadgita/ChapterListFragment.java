@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.app.ListFragment;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
@@ -16,7 +15,7 @@ import com.floydpink.android.bhagavadgita.models.Chapter;
  * also supports tablet devices by allowing list items to be given an
  * 'activated' state upon selection. This helps indicate which item is
  * currently being viewed in a {@link ChapterDetailFragment}.
- * <p>
+ * <p/>
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
@@ -72,11 +71,8 @@ public class ChapterListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<Chapter>(
+        setListAdapter(new ChapterArrayAdapter<Chapter>(
                 getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
                 BookData.Book.getChapters()));
     }
 
@@ -117,7 +113,7 @@ public class ChapterListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(BookData.Book.getChapters().get(position - 1).getName());
+        mCallbacks.onItemSelected(BookData.Book.getChapters().get(position).getName());
     }
 
     @Override
