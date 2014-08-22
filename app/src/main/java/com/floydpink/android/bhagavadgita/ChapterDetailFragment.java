@@ -1,14 +1,18 @@
 package com.floydpink.android.bhagavadgita;
 
+import android.app.ActionBar;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.floydpink.android.bhagavadgita.data.BookData;
+import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
 import com.floydpink.android.bhagavadgita.models.Chapter;
 
 
@@ -46,7 +50,6 @@ public class ChapterDetailFragment extends Fragment {
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
             mChapter = BookData.Chapters.get(getArguments().getString(ARG_ITEM_ID));
-
         }
     }
 
@@ -57,6 +60,15 @@ public class ChapterDetailFragment extends Fragment {
 
         // Show the chapter as text in a TextView.
         if (mChapter != null) {
+            // set the malayalam title on the parent activity
+            SpannableString s = new SpannableString(mChapter.getTitle());
+            s.setSpan(new TypefaceSpan(getActivity(), "AnjaliOldLipi.ttf"), 0, s.length(),
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            // Update the action bar title with the TypefaceSpan instance
+            ActionBar actionBar = getActivity().getActionBar();
+            actionBar.setTitle(s);
+
             TextView textView = (TextView) rootView.findViewById(R.id.chapter_detail);
             textView.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/AnjaliOldLipi.ttf"));
             textView.setText(mChapter.getTitle());

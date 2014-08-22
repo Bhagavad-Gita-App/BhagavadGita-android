@@ -1,8 +1,13 @@
 package com.floydpink.android.bhagavadgita;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.text.Spannable;
+import android.text.SpannableString;
+
+import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
 
 /**
  * An activity representing a list of Chapters. This activity
@@ -32,6 +37,16 @@ public class ChapterListActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // set the malayalam title on this activity
+        SpannableString s = new SpannableString(getTitle());
+        s.setSpan(new TypefaceSpan(this, "AnjaliOldLipi.ttf"), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        // Update the action bar title with the TypefaceSpan instance
+        ActionBar actionBar = getActionBar();
+        actionBar.setTitle(s);
+
         setContentView(R.layout.activity_chapter_list);
 
         if (findViewById(R.id.chapter_detail_container) != null) {
