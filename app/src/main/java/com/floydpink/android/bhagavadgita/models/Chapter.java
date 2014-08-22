@@ -12,7 +12,7 @@ public class Chapter {
     private int ChapterCount;
     private String Intro;
     private String Outro;
-    private List<Paragraph> Contents;
+    private List<Section> Sections;
 
     public String getName() {
         return Name;
@@ -62,21 +62,21 @@ public class Chapter {
         Outro = outro;
     }
 
-    public List<Paragraph> getContents() {
-        return Contents;
+    public List<Section> getSections() {
+        return Sections;
     }
 
-    public void setContents(List<Paragraph> contents) {
-        Contents = contents;
+    public void setSections(List<Section> sections) {
+        Sections = sections;
     }
 
-    public Chapter(String name, String title, int chapterCount, String intro, String outro, List<Paragraph> contents) {
+    public Chapter(String name, String title, int chapterCount, String intro, String outro, List<Section> sections) {
         Name = name;
         Title = title;
         ChapterCount = chapterCount;
         Intro = intro;
         Outro = outro;
-        Contents = contents;
+        Sections = sections;
     }
 
     @Override public String toString() {

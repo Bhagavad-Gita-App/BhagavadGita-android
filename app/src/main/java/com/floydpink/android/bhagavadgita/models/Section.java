@@ -3,27 +3,18 @@ package com.floydpink.android.bhagavadgita.models;
 /**
  * Created by hari on 8/20/14.
  */
-public class Paragraph {
-    private ParagraphType Type;
-    private int ContentCount;
+public class Section {
+    private int SectionCount;
     private int SlokaCount;
     private String Content;
     private String Meaning;
 
-    public ParagraphType getType() {
-        return Type;
+    public int getSectionCount() {
+        return SectionCount;
     }
 
-    public void setType(ParagraphType type) {
-        Type = type;
-    }
-
-    public int getContentCount() {
-        return ContentCount;
-    }
-
-    public void setContentCount(int contentCount) {
-        ContentCount = contentCount;
+    public void setSectionCount(int sectionCount) {
+        SectionCount = sectionCount;
     }
 
     public int getSlokaCount() {
@@ -50,9 +41,8 @@ public class Paragraph {
         Meaning = meaning;
     }
 
-    public Paragraph(ParagraphType type, int contentCount, int slokaCount, String content, String meaning) {
-        Type = type;
-        ContentCount = contentCount;
+    public Section(int sectionCount, int slokaCount, String content, String meaning) {
+        SectionCount = sectionCount;
         SlokaCount = slokaCount;
         Content = content;
         Meaning = meaning;
