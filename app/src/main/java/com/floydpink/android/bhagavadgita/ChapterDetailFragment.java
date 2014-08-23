@@ -55,7 +55,7 @@ public class ChapterDetailFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_chapter_detail, container, false);
 
         // Show the chapter as text in a TextView.
@@ -73,8 +73,14 @@ public class ChapterDetailFragment extends Fragment {
 
             // Chapter Intro
             TextView textView = (TextView) rootView.findViewById(R.id.chapter_intro);
-            textView.setText(mChapter.getIntro());
-            textView.setTypeface(anjaliOldLipi);
+            String intro = mChapter.getIntro();
+            if (intro != null) {
+                textView.setText(intro);
+                textView.setTypeface(anjaliOldLipi);
+            } else {
+                textView.setVisibility(View.INVISIBLE);
+                textView.getLayoutParams().height = 1;
+            }
 
             // Chapter Title
             textView = (TextView) rootView.findViewById(R.id.chapter_title);
@@ -83,8 +89,14 @@ public class ChapterDetailFragment extends Fragment {
 
             // Chapter Outtro
             textView = (TextView) rootView.findViewById(R.id.chapter_outtro);
-            textView.setText(mChapter.getOutro());
-            textView.setTypeface(anjaliOldLipi);
+            String outro = mChapter.getOutro();
+            if (outro != null) {
+                textView.setText(outro);
+                textView.setTypeface(anjaliOldLipi);
+            } else {
+                textView.setVisibility(View.INVISIBLE);
+                textView.getLayoutParams().height = 1;
+            }
         }
 
         return rootView;
