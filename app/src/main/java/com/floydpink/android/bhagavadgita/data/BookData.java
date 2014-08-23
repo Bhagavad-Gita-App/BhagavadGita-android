@@ -1,7 +1,5 @@
 package com.floydpink.android.bhagavadgita.data;
 
-import android.content.res.Resources;
-
 import com.floydpink.android.bhagavadgita.App;
 import com.floydpink.android.bhagavadgita.R;
 import com.floydpink.android.bhagavadgita.helpers.JSONResourceReader;

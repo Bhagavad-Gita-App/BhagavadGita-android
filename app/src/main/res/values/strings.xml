@@ -4,5 +4,9 @@
     <string name="app_name">ശ്രീമദ് ഭഗവദ്ഗീത</string>
     <string name="title_chapter_detail">Chapter Detail</string>
     <string name="loading">Loading\u2026</string>
+    <string name="chapter_number">Chapter Number</string>
+    <string name="chapter_title">Chapter Title</string>
+    <string name="chapter_intro">Atha Prathamodhyaya:</string>
+    <string name="chapter_outtro">Om Tat Sat Idhi</string>
 
 </resources>

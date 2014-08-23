@@ -69,9 +69,22 @@ public class ChapterDetailFragment extends Fragment {
             ActionBar actionBar = getActivity().getActionBar();
             actionBar.setTitle(s);
 
-            TextView textView = (TextView) rootView.findViewById(R.id.chapter_detail);
-            textView.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), "fonts/AnjaliOldLipi.ttf"));
+            Typeface anjaliOldLipi = Typeface.createFromAsset(getActivity().getAssets(), "fonts/AnjaliOldLipi.ttf");
+
+            // Chapter Intro
+            TextView textView = (TextView) rootView.findViewById(R.id.chapter_intro);
+            textView.setText(mChapter.getIntro());
+            textView.setTypeface(anjaliOldLipi);
+
+            // Chapter Title
+            textView = (TextView) rootView.findViewById(R.id.chapter_title);
             textView.setText(mChapter.getTitle());
+            textView.setTypeface(anjaliOldLipi);
+
+            // Chapter Outtro
+            textView = (TextView) rootView.findViewById(R.id.chapter_outtro);
+            textView.setText(mChapter.getOutro());
+            textView.setTypeface(anjaliOldLipi);
         }
 
         return rootView;
