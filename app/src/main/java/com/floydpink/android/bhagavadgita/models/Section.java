@@ -47,4 +47,8 @@ public class Section {
         Content = content;
         Meaning = meaning;
     }
+
+    @Override public String toString() {
+        return Content;
+    }
 }

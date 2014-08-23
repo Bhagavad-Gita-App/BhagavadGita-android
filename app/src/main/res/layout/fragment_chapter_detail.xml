@@ -1,8 +1,8 @@
 <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/horizontalScrollView"
     tools:context=".ChapterDetailFragment">
 
@@ -26,12 +26,22 @@
     <View
         android:id="@+id/horizontal_rule_1"
         android:layout_gravity="center|center_horizontal"
-        android:layout_height="1dip"
+        android:layout_height="1dp"
         android:layout_width="fill_parent"
         android:background="#777"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_margin="16dp"
         android:layout_below="@id/chapter_title"/>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="false"
+        android:layout_below="@id/horizontal_rule_1">
+
+    </ListView>
 
     <TextView
         android:id="@+id/chapter_outtro"
@@ -40,6 +50,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/chapter_outtro"
         android:padding="16dp"
-        android:layout_below="@id/horizontal_rule_1"/>
+        android:layout_toRightOf="@android:id/list"
+        android:layout_toEndOf="@android:id/list"/>
 
 </RelativeLayout>
