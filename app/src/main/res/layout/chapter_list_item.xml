@@ -15,7 +15,7 @@
         android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
         android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
         android:layout_marginTop="6dip"
-        android:gravity="end"
+        android:padding="6dip"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/chapter_number"/>
 
@@ -26,6 +26,7 @@
         android:layout_alignLeft="@android:id/text1"
         android:layout_alignStart="@android:id/text1"
         android:layout_below="@android:id/text1"
+        android:padding="6dip"
         android:textAppearance="?android:attr/textAppearanceListItem"
         android:text="@string/chapter_title"/>
 
