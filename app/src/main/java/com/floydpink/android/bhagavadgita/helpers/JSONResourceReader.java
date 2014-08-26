@@ -1,12 +1,16 @@
 package com.floydpink.android.bhagavadgita.helpers;
 
-import java.io.*;
-
 import android.content.res.Resources;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
+import java.io.Writer;
 
 /**
  * Created by hari on 8/20/14.

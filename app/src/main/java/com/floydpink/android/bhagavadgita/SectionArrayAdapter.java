@@ -11,13 +11,12 @@ import android.widget.TextView;
 
 import com.floydpink.android.bhagavadgita.models.Chapter;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
  * Created by hari on 8/23/14.
  */
-public class ChapterDetailAdapter extends BaseAdapter {
+public class SectionArrayAdapter extends BaseAdapter {
 
     private ArrayList<Section> mChapterSections = new ArrayList<Section>();
     private LayoutInflater mInflater;
@@ -31,7 +30,7 @@ public class ChapterDetailAdapter extends BaseAdapter {
         Context = context;
     }
 
-    public ChapterDetailAdapter(Context context, Chapter chapter) {
+    public SectionArrayAdapter(Context context, Chapter chapter) {
         setContext(context);
         mInflater = (LayoutInflater) context.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE);
         hydrateAdapter(chapter);

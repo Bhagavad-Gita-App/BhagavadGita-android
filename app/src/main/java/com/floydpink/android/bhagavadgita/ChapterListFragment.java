@@ -1,14 +1,12 @@
 package com.floydpink.android.bhagavadgita;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.app.ListFragment;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
-
 import com.floydpink.android.bhagavadgita.data.BookData;
-import com.floydpink.android.bhagavadgita.models.Chapter;
 
 /**
  * A list fragment representing a list of Chapters. This fragment

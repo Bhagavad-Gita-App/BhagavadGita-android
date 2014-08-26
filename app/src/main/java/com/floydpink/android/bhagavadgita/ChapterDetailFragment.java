@@ -1,23 +1,18 @@
 package com.floydpink.android.bhagavadgita;
 
 import android.app.ActionBar;
-import android.app.ListFragment;
-import android.graphics.Typeface;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.floydpink.android.bhagavadgita.data.BookData;
 import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
 import com.floydpink.android.bhagavadgita.models.Chapter;
-import com.floydpink.android.bhagavadgita.models.Section;
 
 
 /**
@@ -76,7 +71,7 @@ public class ChapterDetailFragment extends Fragment {
 
             // Populate the list with the sections in the chapter
             ListView sectionsList = (ListView) rootView.findViewById(android.R.id.list);
-            sectionsList.setAdapter(new ChapterDetailAdapter(getActivity(), mChapter));
+            sectionsList.setAdapter(new SectionArrayAdapter(getActivity(), mChapter));
 
         }
 
