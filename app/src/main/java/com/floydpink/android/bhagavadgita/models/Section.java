@@ -8,6 +8,7 @@ public class Section {
     private int SlokaCount;
     private String Content;
     private String Meaning;
+    private String Speaker;
 
     public int getSectionCount() {
         return SectionCount;
@@ -41,11 +42,20 @@ public class Section {
         Meaning = meaning;
     }
 
-    public Section(int sectionCount, int slokaCount, String content, String meaning) {
+    public String getSpeaker() {
+        return Speaker;
+    }
+
+    public void setSpeaker(String speaker) {
+        Speaker = speaker;
+    }
+
+    public Section(int sectionCount, int slokaCount, String content, String meaning, String speaker) {
         SectionCount = sectionCount;
         SlokaCount = slokaCount;
         Content = content;
         Meaning = meaning;
+        Speaker = speaker;
     }
 
     @Override public String toString() {

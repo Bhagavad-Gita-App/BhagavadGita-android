@@ -71,45 +71,13 @@ public class ChapterDetailFragment extends Fragment {
 
             // Update the action bar title with the TypefaceSpan instance
             ActionBar actionBar = getActivity().getActionBar();
+            assert actionBar != null;
             actionBar.setTitle(s);
 
-            Typeface anjaliOldLipi = Typeface.createFromAsset(getActivity().getAssets(), "fonts/AnjaliOldLipi.ttf");
-
-            // Chapter Intro
-            TextView textView = (TextView) rootView.findViewById(R.id.chapter_intro);
-            String intro = mChapter.getIntro();
-            if (intro != null) {
-                textView.setText(intro);
-                textView.setTypeface(anjaliOldLipi);
-            } else {
-                textView.setVisibility(View.INVISIBLE);
-                textView.getLayoutParams().height = 1;
-            }
-
-            // Chapter Title
-            textView = (TextView) rootView.findViewById(R.id.chapter_title);
-            textView.setText(mChapter.getTitle());
-            textView.setTypeface(anjaliOldLipi);
-
-            // Sections
+            // Populate the list with the sections in the chapter
             ListView sectionsList = (ListView) rootView.findViewById(android.R.id.list);
-            sectionsList.setAdapter(new SectionArrayAdapter<Section>(
-                    getActivity(),
-                    mChapter.getSections()));
+            sectionsList.setAdapter(new ChapterDetailAdapter(getActivity(), mChapter));
 
-            // Add header and footer to the sections
-
-
-            // Chapter Outtro
-            textView = (TextView) rootView.findViewById(R.id.chapter_outtro);
-            String outro = mChapter.getOutro();
-            if (outro != null) {
-                textView.setText(outro);
-                textView.setTypeface(anjaliOldLipi);
-            } else {
-                textView.setVisibility(View.INVISIBLE);
-                textView.getLayoutParams().height = 1;
-            }
         }
 
         return rootView;

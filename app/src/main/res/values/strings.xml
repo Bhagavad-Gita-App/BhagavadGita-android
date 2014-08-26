@@ -4,9 +4,12 @@
     <string name="app_name">ശ്രീമദ് ഭഗവദ്ഗീത</string>
     <string name="title_chapter_detail">Chapter Detail</string>
     <string name="loading">Loading\u2026</string>
-    <string name="chapter_number">Chapter Number</string>
-    <string name="chapter_title">Chapter Title</string>
-    <string name="chapter_intro">Atha Prathamodhyaya:</string>
-    <string name="chapter_outtro">Om Tat Sat Idhi</string>
+    <string name="chapter_number">adhyayam 1</string>
+    <string name="chapter_title">purushottama yoga:</string>
+    <string name="chapter_intro">atha: panchadasodhyaya:</string>
+    <string name="chapter_outtro">om tat sat\niti srimad bhagavadgeetaasu upanishatsu brahma vidyaayaam yogashaastre\nsri krishnaarjuna samvaade purushottama yogo naama panchadaso\'dyaayah||</string>
+    <string name="chapter_speaker">sri bhagavan uvacha:</string>
+    <string name="chapter_verse">urdhva-mulam adhah-sakham\nasvattham prahur avyayam\nchandamsi yasya parnani\nyas tam veda sa veda-vit</string>
+    <string name="chapter_meaning">The Blessed Lord said: There is a banyan tree which has its roots upward and its branches down and whose leaves are the Vedic hymns. One who knows this tree is the knower of the Vedas.</string>
 
 </resources>

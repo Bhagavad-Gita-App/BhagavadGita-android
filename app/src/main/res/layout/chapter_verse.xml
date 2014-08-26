@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="16dp"
+    android:text="@string/chapter_verse"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:background="#eee"
+    android:textStyle="bold|italic" />
