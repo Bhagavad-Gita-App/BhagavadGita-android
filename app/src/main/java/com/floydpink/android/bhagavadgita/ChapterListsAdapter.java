@@ -12,7 +12,7 @@ import com.floydpink.android.bhagavadgita.data.BookData;
 /**
  * Created by hari on 8/21/14.
  */
-public class ChapterArrayAdapter extends SimpleAdapter {
+public class ChapterListsAdapter extends SimpleAdapter {
 
     private Context Context;
 
@@ -24,7 +24,7 @@ public class ChapterArrayAdapter extends SimpleAdapter {
         Context = context;
     }
 
-    public ChapterArrayAdapter(Context context) {
+    public ChapterListsAdapter(Context context) {
         super(context, BookData.ChapterList,
                 R.layout.chapter_list_item,
                 new String[]{"subtitle", "title"},

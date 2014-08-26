@@ -12,7 +12,10 @@ import android.widget.ListView;
 
 import com.floydpink.android.bhagavadgita.data.BookData;
 import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
-import com.floydpink.android.bhagavadgita.models.Chapter;
+import com.floydpink.android.bhagavadgita.data.ChapterSection;
+import com.floydpink.android.bhagavadgita.data.SectionType;
+
+import java.util.ArrayList;
 
 
 /**
@@ -29,9 +32,14 @@ public class ChapterDetailFragment extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
 
     /**
-     * The chapter this fragment is presenting.
+     * The title of the chapter this fragment is presenting.
      */
-    private Chapter mChapter;
+    private String mChapterTitle;
+
+    /**
+     * The sections of the chapter this fragment is presenting.
+     */
+    private ArrayList<ChapterSection> mChapterSections;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -48,8 +56,19 @@ public class ChapterDetailFragment extends Fragment {
             // Load the chapter specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mChapter = BookData.Chapters.get(getArguments().getString(ARG_ITEM_ID));
+            String chapterName = getArguments().getString(ARG_ITEM_ID);
+            mChapterSections = BookData.Chapters.get(chapterName);
+            mChapterTitle = getChapterTitle(mChapterSections);
         }
+    }
+
+    private String getChapterTitle(ArrayList<ChapterSection> mChapterSections) {
+        for (ChapterSection section : mChapterSections){
+            if (section.Type == SectionType.Title) {
+                return section.Content;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -58,9 +77,9 @@ public class ChapterDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_chapter_detail, container, false);
 
         // Show the chapter as text in a TextView.
-        if (mChapter != null) {
+        if (mChapterSections != null) {
             // set the malayalam title on the parent activity
-            SpannableString s = new SpannableString(mChapter.getTitle());
+            SpannableString s = new SpannableString(mChapterTitle);
             s.setSpan(new TypefaceSpan(getActivity(), "AnjaliOldLipi.ttf"), 0, s.length(),
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
@@ -71,7 +90,7 @@ public class ChapterDetailFragment extends Fragment {
 
             // Populate the list with the sections in the chapter
             ListView sectionsList = (ListView) rootView.findViewById(android.R.id.list);
-            sectionsList.setAdapter(new SectionArrayAdapter(getActivity(), mChapter));
+            sectionsList.setAdapter(new ChapterSectionsAdapter(getActivity(), mChapterSections));
 
         }
 

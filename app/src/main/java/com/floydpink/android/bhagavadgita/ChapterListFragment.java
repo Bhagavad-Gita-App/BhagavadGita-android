@@ -69,7 +69,7 @@ public class ChapterListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setListAdapter(new ChapterArrayAdapter(getActivity()));
+        setListAdapter(new ChapterListsAdapter(getActivity()));
     }
 
     @Override

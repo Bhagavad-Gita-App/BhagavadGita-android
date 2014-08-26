@@ -45,6 +45,7 @@ public class ChapterListActivity extends Activity
 
         // Update the action bar title with the TypefaceSpan instance
         ActionBar actionBar = getActionBar();
+        assert actionBar != null;
         actionBar.setTitle(s);
 
         setContentView(R.layout.activity_chapter_list);

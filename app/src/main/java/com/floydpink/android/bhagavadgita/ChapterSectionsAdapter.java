@@ -2,38 +2,30 @@ package com.floydpink.android.bhagavadgita;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.floydpink.android.bhagavadgita.models.Chapter;
+import com.floydpink.android.bhagavadgita.data.ChapterSection;
+import com.floydpink.android.bhagavadgita.data.SectionType;
 
 import java.util.ArrayList;
 
 /**
  * Created by hari on 8/23/14.
  */
-public class SectionArrayAdapter extends BaseAdapter {
+public class ChapterSectionsAdapter extends BaseAdapter {
 
-    private ArrayList<Section> mChapterSections = new ArrayList<Section>();
+    private ArrayList<ChapterSection> mChapterSections = new ArrayList<ChapterSection>();
     private LayoutInflater mInflater;
     private Context Context;
 
-    public Context getContext() {
-        return Context;
-    }
-
-    public void setContext(Context context) {
+    public ChapterSectionsAdapter(Context context, ArrayList<ChapterSection> chapter) {
         Context = context;
-    }
-
-    public SectionArrayAdapter(Context context, Chapter chapter) {
-        setContext(context);
+        mChapterSections = chapter;
         mInflater = (LayoutInflater) context.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE);
-        hydrateAdapter(chapter);
     }
 
     @Override
@@ -54,7 +46,7 @@ public class SectionArrayAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = new ViewHolder();
-        Typeface anjaliOldLipi = Typeface.createFromAsset(getContext().getAssets(), "fonts/AnjaliOldLipi.ttf");
+        Typeface anjaliOldLipi = Typeface.createFromAsset(Context.getAssets(), "fonts/AnjaliOldLipi.ttf");
         SectionType sectionType = getSectionTypeForPosition(position);
         int sectionStyle;
         switch (sectionType) {
@@ -88,59 +80,7 @@ public class SectionArrayAdapter extends BaseAdapter {
     }
 
     private SectionType getSectionTypeForPosition(int position) {
-        return mChapterSections.get(position).type;
-    }
-
-    private void hydrateAdapter(Chapter chapter) {
-        String chapterIntro = chapter.getIntro();
-        if (!TextUtils.isEmpty(chapterIntro)) {
-            Section intro = new Section();
-            intro.type = SectionType.Intro;
-            intro.Content = chapterIntro;
-            mChapterSections.add(intro);
-        }
-
-        String chapterTitle = chapter.getTitle();
-        if (!TextUtils.isEmpty(chapterTitle)) {
-            Section title = new Section();
-            title.type = SectionType.Title;
-            title.Content = chapterTitle;
-            mChapterSections.add(title);
-        }
-
-        for (com.floydpink.android.bhagavadgita.models.Section section : chapter.getSections()) {
-            String sectionSpeaker = section.getSpeaker();
-            if (!TextUtils.isEmpty(sectionSpeaker)) {
-                Section speaker = new Section();
-                speaker.type = SectionType.Speaker;
-                speaker.Content = sectionSpeaker;
-                mChapterSections.add(speaker);
-            }
-
-            String sectionVerse = section.getContent();
-            if (!TextUtils.isEmpty(sectionVerse)) {
-                Section verse = new Section();
-                verse.type = SectionType.Verse;
-                verse.Content = sectionVerse;
-                mChapterSections.add(verse);
-            }
-
-            String sectionMeaning = section.getMeaning();
-            if (!TextUtils.isEmpty(sectionMeaning)) {
-                Section meaning = new Section();
-                meaning.type = SectionType.Meaning;
-                meaning.Content = sectionMeaning;
-                mChapterSections.add(meaning);
-            }
-        }
-
-        String chapterOutro = chapter.getOutro();
-        if (!TextUtils.isEmpty(chapterOutro)) {
-            Section outro = new Section();
-            outro.type = SectionType.Outro;
-            outro.Content = chapterOutro;
-            mChapterSections.add(outro);
-        }
+        return mChapterSections.get(position).Type;
     }
 
     private View getViewForSection(int resource) {
@@ -172,15 +112,6 @@ public class SectionArrayAdapter extends BaseAdapter {
                 resource = R.layout.chapter_verse;
         }
         return resource;
-    }
-
-    private enum SectionType {
-        Intro, Title, Speaker, Verse, Meaning, Outro
-    }
-
-    private class Section {
-        public SectionType type;
-        public String Content;
     }
 
     private class ViewHolder {
