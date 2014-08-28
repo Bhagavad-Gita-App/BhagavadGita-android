@@ -7,5 +7,6 @@
     android:padding="16dp"
     android:text="@string/chapter_verse"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    android:background="#eee"
+    android:background="#666"
+    android:textColor="#fff"
     android:textStyle="bold|italic" />
