@@ -78,7 +78,7 @@ public class ChapterListActivity extends Activity
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(ChapterDetailFragment.ARG_ITEM_ID, id);
+            arguments.putString(ChapterDetailFragment.ARG_CHAPTER_NAME, id);
             ChapterDetailFragment fragment = new ChapterDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
@@ -89,7 +89,7 @@ public class ChapterListActivity extends Activity
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, ChapterDetailActivity.class);
-            detailIntent.putExtra(ChapterDetailFragment.ARG_ITEM_ID, id);
+            detailIntent.putExtra(ChapterDetailFragment.ARG_CHAPTER_NAME, id);
             startActivity(detailIntent);
         }
     }

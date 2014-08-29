@@ -30,7 +30,7 @@ public class ChapterDetailFragment extends Fragment {
      * The fragment argument representing the item ID that this fragment
      * represents.
      */
-    public static final String ARG_ITEM_ID = "item_id";
+    public static final String ARG_CHAPTER_NAME = "chapter_name";
 
     /**
      * The title of the book or the title of the parent activity in two-pane mode.
@@ -58,11 +58,11 @@ public class ChapterDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
+        if (getArguments().containsKey(ARG_CHAPTER_NAME)) {
             // Load the chapter specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            String chapterName = getArguments().getString(ARG_ITEM_ID);
+            String chapterName = getArguments().getString(ARG_CHAPTER_NAME);
             mChapterSections = BookData.Chapters.get(chapterName);
             mChapterTitle = getChapterTitle(mChapterSections);
         }
