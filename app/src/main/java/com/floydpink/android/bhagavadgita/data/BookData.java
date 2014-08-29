@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class BookData {
 
-    public static Book Book = initializeBookFromResource();
+    public static Book Book;
 
     public static List<Map<String, String>> ChapterList;
 
