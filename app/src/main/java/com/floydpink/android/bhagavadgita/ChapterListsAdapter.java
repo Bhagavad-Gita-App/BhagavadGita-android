@@ -35,11 +35,11 @@ public class ChapterListsAdapter extends SimpleAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
-        Typeface anjaliOldLipi = Typeface.createFromAsset(getContext().getAssets(), "fonts/AnjaliOldLipi.ttf");
+        Typeface malayalamFont = Typeface.createFromAsset(getContext().getAssets(), "fonts/AnjaliOldLipi.ttf");
         TextView textView = (TextView) view.findViewById(android.R.id.text1);
-        textView.setTypeface(anjaliOldLipi);
+        textView.setTypeface(malayalamFont);
         textView = (TextView) view.findViewById(android.R.id.text2);
-        textView.setTypeface(anjaliOldLipi);
+        textView.setTypeface(malayalamFont);
         return view;
     }
 }

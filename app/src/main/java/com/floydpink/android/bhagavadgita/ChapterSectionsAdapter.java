@@ -46,7 +46,7 @@ public class ChapterSectionsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = new ViewHolder();
-        Typeface anjaliOldLipi = Typeface.createFromAsset(Context.getAssets(), "fonts/AnjaliOldLipi.ttf");
+        Typeface malayalamFont = Typeface.createFromAsset(Context.getAssets(), "fonts/AnjaliOldLipi.ttf");
         SectionType sectionType = getSectionTypeForPosition(position);
         int sectionStyle;
         switch (sectionType) {
@@ -65,7 +65,7 @@ public class ChapterSectionsAdapter extends BaseAdapter {
         holder.textView = (TextView) convertView.findViewById(R.id.text);
         convertView.setTag(holder);
         holder.textView.setText(mChapterSections.get(position).Content);
-        holder.textView.setTypeface(anjaliOldLipi, sectionStyle);
+        holder.textView.setTypeface(malayalamFont, sectionStyle);
         return convertView;
     }
 
