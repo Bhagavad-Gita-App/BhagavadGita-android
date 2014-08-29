@@ -1,6 +1,7 @@
 package com.floydpink.android.bhagavadgita;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -30,6 +31,11 @@ public class ChapterDetailFragment extends Fragment {
      * represents.
      */
     public static final String ARG_ITEM_ID = "item_id";
+
+    /**
+     * The title of the book or the title of the parent activity in two-pane mode.
+     */
+    private String mBookTitle;
 
     /**
      * The title of the chapter this fragment is presenting.
@@ -78,19 +84,30 @@ public class ChapterDetailFragment extends Fragment {
 
         // Show the chapter as text in a TextView.
         if (mChapterSections != null) {
-            // set the malayalam title on the parent activity
-            SpannableString s = new SpannableString(mChapterTitle);
-            s.setSpan(new TypefaceSpan(getActivity(), "AnjaliOldLipi.ttf"), 0, s.length(),
+            Activity parentActivity = getActivity();
+
+            // set the chapter title in malayalam on the activity if we are in single pane mode,
+            // else append the chapter title to the book title
+            String newTitle = mChapterTitle;
+            if (parentActivity instanceof ChapterListActivity) {
+                if (mBookTitle == null) {
+                    mBookTitle = parentActivity.getTitle().toString();
+                }
+                newTitle = mBookTitle + " - " + newTitle;
+            }
+
+            SpannableString s = new SpannableString(newTitle);
+            s.setSpan(new TypefaceSpan(parentActivity, "AnjaliOldLipi.ttf"), 0, s.length(),
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
             // Update the action bar title with the TypefaceSpan instance
-            ActionBar actionBar = getActivity().getActionBar();
+            ActionBar actionBar = parentActivity.getActionBar();
             assert actionBar != null;
             actionBar.setTitle(s);
 
             // Populate the list with the sections in the chapter
             ListView sectionsList = (ListView) rootView.findViewById(android.R.id.list);
-            sectionsList.setAdapter(new ChapterSectionsAdapter(getActivity(), mChapterSections));
+            sectionsList.setAdapter(new ChapterSectionsAdapter(parentActivity, mChapterSections));
 
         }
 
