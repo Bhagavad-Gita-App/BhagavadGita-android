@@ -128,9 +128,14 @@ public class ChapterListFragment extends ListFragment {
     public void setActivateOnItemClick(boolean activateOnItemClick) {
         // When setting CHOICE_MODE_SINGLE, ListView will automatically
         // give items the 'activated' state when touched.
-        getListView().setChoiceMode(activateOnItemClick
+        ListView chapterList = getListView();
+        chapterList.setChoiceMode(activateOnItemClick
                 ? ListView.CHOICE_MODE_SINGLE
                 : ListView.CHOICE_MODE_NONE);
+        // If on dual-pane view, pre-select the first item from the chapter list
+        if (activateOnItemClick) {
+            chapterList.performItemClick(chapterList, 0, chapterList.getItemIdAtPosition(0));
+        }
     }
 
     private void setActivatedPosition(int position) {
