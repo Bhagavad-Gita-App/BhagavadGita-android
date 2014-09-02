@@ -3,6 +3,8 @@
 
 [![Get the Android app on Google Play Store](http://developer.android.com/images/brand/en_app_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.floydpink.android.bhagavadgita)
 
+[![Srimad Bhagavad Gita](http://floydpink.github.io/BhagavadGita/images/graphic.png)](http://floydpink.github.io/BhagavadGita/)
+
 Srimad Bhagavad Gita in Malayalam with meaning of all 700 slokas and of Geeta Dhyanam and Geeta Mahatmyam. Bhagavad Gita is the most popular Hindu scripture. 
 
 It is said in Gita Mahatmya that Gita is the essence of Vedas.
