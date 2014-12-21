@@ -71,7 +71,8 @@ public class ChapterSectionsAdapter extends BaseAdapter {
 
     @Override
     public boolean isEnabled(int position) {
-        return false;
+        SectionType section = getSectionTypeForPosition(position);
+        return section == SectionType.Speaker || section == SectionType.Verse || section == SectionType.Meaning;
     }
 
     @Override

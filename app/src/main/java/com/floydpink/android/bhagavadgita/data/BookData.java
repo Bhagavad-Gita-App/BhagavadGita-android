@@ -10,6 +10,7 @@ import com.floydpink.android.bhagavadgita.models.Chapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,9 @@ public class BookData {
 
     public static List<Map<String, String>> ChapterList;
 
-    public static Map<String, ArrayList<ChapterSection>> Chapters;
+    public static LinkedHashMap<String, ArrayList<ChapterSection>> Chapters;
+
+    public static Map<String, Integer> ChapterIndexes;
 
     static {
         Book = initializeBookFromResource();
@@ -33,16 +36,24 @@ public class BookData {
 
         Book book = reader.constructUsingGson(Book.class);
 
-        ChapterList = new ArrayList<Map<String, String>>();
-        Chapters = new HashMap<String, ArrayList<ChapterSection>>();
+        ChapterList = new ArrayList<>();
+        Chapters = new LinkedHashMap<>();
+        ChapterIndexes = new HashMap<>();
+
+        int chapterIndex = 0;
+
         for (Chapter chapter : book.getChapters()) {
 
             Chapters.put(chapter.getName(), hydrateChapterSections(chapter));
+
+            ChapterIndexes.put(chapter.getName(), chapterIndex);
 
             Map<String, String> chapterListItem = new HashMap<String, String>(2);
             chapterListItem.put("title", chapter.getTitle());
             chapterListItem.put("subtitle", chapter.getSubtitle());
             ChapterList.add(chapterListItem);
+
+            chapterIndex++;
         }
 
         return book;
@@ -66,12 +77,14 @@ public class BookData {
             chapterSections.add(title);
         }
 
+        int sectionCount = 0;
         for (com.floydpink.android.bhagavadgita.models.Section section : chapter.getSections()) {
             String sectionSpeaker = section.getSpeaker();
             if (!TextUtils.isEmpty(sectionSpeaker)) {
                 ChapterSection speaker = new ChapterSection();
                 speaker.Type = SectionType.Speaker;
                 speaker.Content = sectionSpeaker;
+                speaker.OriginalSection = Integer.toString(sectionCount);
                 chapterSections.add(speaker);
             }
 
@@ -80,6 +93,7 @@ public class BookData {
                 ChapterSection verse = new ChapterSection();
                 verse.Type = SectionType.Verse;
                 verse.Content = sectionVerse;
+                verse.OriginalSection = Integer.toString(sectionCount);
                 chapterSections.add(verse);
             }
 
@@ -88,8 +102,10 @@ public class BookData {
                 ChapterSection meaning = new ChapterSection();
                 meaning.Type = SectionType.Meaning;
                 meaning.Content = sectionMeaning;
+                meaning.OriginalSection = Integer.toString(sectionCount);
                 chapterSections.add(meaning);
             }
+            sectionCount++;
         }
 
         String chapterOutro = chapter.getOutro();

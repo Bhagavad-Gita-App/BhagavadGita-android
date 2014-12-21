@@ -12,11 +12,12 @@ import android.view.MenuItem;
  * activity is only used on handset devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
  * in a {@link ChapterListActivity}.
- * <p>
+ * <p/>
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link ChapterDetailFragment}.
  */
-public class ChapterDetailActivity extends Activity {
+public class ChapterDetailActivity extends Activity
+        implements ChapterDetailFragment.Callbacks {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,5 +65,12 @@ public class ChapterDetailActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemSelected(String chapterAndVerse) {
+        Intent detailIntent = new Intent(this, SectionDetailActivity.class);
+        detailIntent.putExtra(SectionDetailActivity.ARG_CHAPTER_VERSE, chapterAndVerse);
+        startActivity(detailIntent);
     }
 }

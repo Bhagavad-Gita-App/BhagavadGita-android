@@ -11,5 +11,8 @@
     <string name="chapter_speaker">sri bhagavan uvacha:</string>
     <string name="chapter_verse">urdhva-mulam adhah-sakham\nasvattham prahur avyayam\nchandamsi yasya parnani\nyas tam veda sa veda-vit</string>
     <string name="chapter_meaning">The Blessed Lord said: There is a banyan tree which has its roots upward and its branches down and whose leaves are the Vedic hymns. One who knows this tree is the knower of the Vedas.</string>
+    <string name="title_activity_section_detail">Section Detail Activity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

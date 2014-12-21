@@ -4,10 +4,13 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.text.Spannable;
 import android.text.SpannableString;
 
 import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
+
+import java.util.List;
 
 /**
  * An activity representing a list of Chapters. This activity
@@ -65,6 +68,16 @@ public class ChapterListActivity extends Activity
         }
 
         // TODO: If exposing deep links into your app, handle intents here.
+        final Intent intent = getIntent();
+        final String action = intent.getAction();
+
+        if (Intent.ACTION_VIEW.equals(action)) {
+            Debug.waitForDebugger();
+            final List<String> segments = intent.getData().getPathSegments();
+            if (segments.size() > 1) {
+
+            }
+        }
     }
 
     /**
