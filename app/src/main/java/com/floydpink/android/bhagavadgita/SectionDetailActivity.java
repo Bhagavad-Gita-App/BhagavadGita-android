@@ -2,21 +2,25 @@ package com.floydpink.android.bhagavadgita;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.util.AttributeSet;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.floydpink.android.bhagavadgita.data.BookData;
 import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
 import com.floydpink.android.bhagavadgita.models.Chapter;
 import com.floydpink.android.bhagavadgita.models.Section;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class SectionDetailActivity extends Activity {
@@ -71,23 +75,37 @@ public class SectionDetailActivity extends Activity {
     }
 
     private String getSectionDetailActivityTitle(Chapter chapter, int sectionIndex, Section section) {
-//        getSlokaNumber = function (s, sloka) {
-//            var slokaNumber = parseInt(s, 10) + 1;
-//            var re = /\(([0-9]+)\)/gm;
-//            if (sloka.Content.match(re)) {
-//                var regexExecResult, slokaNumbers = [];
-//                while ((regexExecResult = re.exec(sloka.Content)) !== null) {
-//                    slokaNumbers.push(regexExecResult[1]);
-//                }
-//                slokaNumber = slokaNumbers.join(', ');
-//            }
-//            return ((slokaNumber.toString().indexOf(',') > -1) ? 'ശ്ലോകങ്ങൾ ' : 'ശ്ലോകം ') + slokaNumber;
-//        },
-        String slokaNumber = Integer.toString(sectionIndex + 1);
-        String sectionTitle;
-        return String.format("%s - %s", chapter.getTitle(), sectionTitle);
+        String sectionTitle = getSectionTitle(sectionIndex, section.getContent());
+        return String.format("%s%s",
+                getDisplayWidth() > 1080 ? chapter.getTitle() + " - " : "",
+                sectionTitle);
     }
 
+
+    private String getSectionTitle(int s, String sloka) {
+        String slokaNumber = Integer.toString(s);
+        Pattern regex = Pattern.compile("\\(([0-9]+)\\)", Pattern.DOTALL);
+        Matcher regexMatcher = regex.matcher(sloka);
+        List<String> slokaNumbers = new ArrayList<>();
+        while (regexMatcher.find()) {
+            slokaNumbers.add(regexMatcher.group(1));
+        }
+        if (slokaNumbers.size() > 0) {
+            slokaNumber = TextUtils.join(", ", slokaNumbers);
+        }
+        return ((slokaNumber.indexOf(',') > -1) ? "ശ്ലോകങ്ങൾ " : "ശ്ലോകം ") + slokaNumber;
+    }
+
+    private int getDisplayWidth(){
+        // http://stackoverflow.com/a/18712361
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        //int width = size.x;
+        //int height = size.y;
+        Log.d("Display Width: ", Integer.toString(size.x));
+        return size.x;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
