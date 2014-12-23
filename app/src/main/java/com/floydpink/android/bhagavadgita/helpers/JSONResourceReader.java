@@ -15,6 +15,7 @@ import java.io.Writer;
 /**
  * Created by hari on 8/20/14.
  */
+
 /**
  * An object for reading from a JSON resource file and constructing an object from that resource file using Gson.
  */
@@ -22,9 +23,9 @@ public class JSONResourceReader {
 
     // === [ Private Data Members ] ============================================
 
+    private static final String LOGTAG = JSONResourceReader.class.getSimpleName();
     // Our JSON, in string form.
     private String jsonString;
-    private static final String LOGTAG = JSONResourceReader.class.getSimpleName();
 
     // === [ Public API ] ======================================================
 
@@ -33,7 +34,7 @@ public class JSONResourceReader {
      * objects from this resource.
      *
      * @param resources An application {@link Resources} object.
-     * @param id The id for the resource to load, typically held in the raw/ folder.
+     * @param id        The id for the resource to load, typically held in the raw/ folder.
      */
     public JSONResourceReader(Resources resources, int id) {
         InputStream resourceReader = resources.openRawResource(id);
@@ -62,7 +63,6 @@ public class JSONResourceReader {
      * Build an object from the specified JSON resource using Gson.
      *
      * @param type The type of the object to build.
-     *
      * @return An object of type T, with member fields populated using Gson.
      */
     public <T> T constructUsingGson(Class<T> type) {

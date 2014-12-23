@@ -3,6 +3,6 @@
     android:id="@+id/text"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:textAppearance="?android:attr/textAppearanceMedium"
     android:padding="16dp"
-    android:text="@string/chapter_meaning"/>
+    android:text="@string/chapter_meaning"
+    android:textAppearance="?android:attr/textAppearanceMedium" />

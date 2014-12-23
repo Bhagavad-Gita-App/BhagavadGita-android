@@ -10,6 +10,14 @@ public class Section {
     private String Meaning;
     private String Speaker;
 
+    public Section(int sectionCount, int slokaCount, String content, String meaning, String speaker) {
+        SectionCount = sectionCount;
+        SlokaCount = slokaCount;
+        Content = content;
+        Meaning = meaning;
+        Speaker = speaker;
+    }
+
     public int getSectionCount() {
         return SectionCount;
     }
@@ -50,15 +58,8 @@ public class Section {
         Speaker = speaker;
     }
 
-    public Section(int sectionCount, int slokaCount, String content, String meaning, String speaker) {
-        SectionCount = sectionCount;
-        SlokaCount = slokaCount;
-        Content = content;
-        Meaning = meaning;
-        Speaker = speaker;
-    }
-
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return Content;
     }
 }

@@ -3,8 +3,8 @@
     tools:context="com.floydpink.android.bhagavadgita.SectionDetailActivity">
     <item
         android:id="@+id/action_share"
-        android:title="@string/action_share"
+        android:icon="@android:drawable/ic_menu_share"
         android:orderInCategory="100"
         android:showAsAction="always|withText"
-        android:icon="@android:drawable/ic_menu_share" />
+        android:title="@string/action_share" />
 </menu>

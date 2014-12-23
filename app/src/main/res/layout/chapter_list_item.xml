@@ -15,8 +15,8 @@
         android:layout_marginStart="?android:attr/listPreferredItemPaddingStart"
         android:layout_marginTop="6dip"
         android:padding="6dip"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/chapter_number"/>
+        android:text="@string/chapter_number"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
         android:id="@android:id/text2"
@@ -26,7 +26,7 @@
         android:layout_alignStart="@android:id/text1"
         android:layout_below="@android:id/text1"
         android:padding="6dip"
-        android:textAppearance="?android:attr/textAppearanceListItem"
-        android:text="@string/chapter_title"/>
+        android:text="@string/chapter_title"
+        android:textAppearance="?android:attr/textAppearanceListItem" />
 
 </RelativeLayout>

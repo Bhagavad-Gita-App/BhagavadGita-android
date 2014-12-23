@@ -16,20 +16,20 @@ public class ChapterTitlesAdapter extends SimpleAdapter {
 
     private Context Context;
 
-    public Context getContext() {
-        return Context;
-    }
-
-    public void setContext(Context context) {
-        Context = context;
-    }
-
     public ChapterTitlesAdapter(Context context) {
         super(context, BookData.ChapterList,
                 R.layout.chapter_list_item,
                 new String[]{"subtitle", "title"},
                 new int[]{android.R.id.text1, android.R.id.text2});
         setContext(context);
+    }
+
+    public Context getContext() {
+        return Context;
+    }
+
+    public void setContext(Context context) {
+        Context = context;
     }
 
     @Override

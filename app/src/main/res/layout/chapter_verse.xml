@@ -3,10 +3,10 @@
     android:id="@+id/text"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="#666"
     android:gravity="center"
     android:padding="16dp"
     android:text="@string/chapter_verse"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    android:background="#666"
     android:textColor="#fff"
     android:textStyle="bold|italic" />

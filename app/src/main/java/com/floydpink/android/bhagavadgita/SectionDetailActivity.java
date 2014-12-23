@@ -2,21 +2,16 @@ package com.floydpink.android.bhagavadgita;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Point;
 import android.graphics.Typeface;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.floydpink.android.bhagavadgita.data.BookData;

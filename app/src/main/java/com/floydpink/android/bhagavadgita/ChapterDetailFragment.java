@@ -33,45 +33,6 @@ public class ChapterDetailFragment extends ListFragment {
      * represents.
      */
     public static final String ARG_CHAPTER_NAME = "chapter_name";
-
-    /**
-     * The title of the book or the title of the parent activity in two-pane mode.
-     */
-    private String mBookTitle;
-
-    /**
-     * The title of the chapter this fragment is presenting.
-     */
-    private String mChapterTitle;
-
-    /**
-     * The sections of the chapter this fragment is presenting.
-     */
-    private ArrayList<ChapterSection> mChapterSections;
-
-    /**
-     * The index in the original JSON's Chapters collection for the chapter this fragment is presenting.
-     */
-    private int mChapterIndex;
-
-    /**
-     * The fragment's current callback object, which is notified of list item
-     * clicks.
-     */
-    private Callbacks mCallbacks = sDummyCallbacks;
-
-    /**
-     * A callback interface that all activities containing this fragment must
-     * implement. This mechanism allows activities to be notified of item
-     * selections.
-     */
-    public interface Callbacks {
-        /**
-         * Callback for when an item has been selected.
-         */
-        public void onSectionSelected(String chapterAndVerse);
-    }
-
     /**
      * A dummy implementation of the {@link Callbacks} interface that does
      * nothing. Used only when this fragment is not attached to an activity.
@@ -81,6 +42,27 @@ public class ChapterDetailFragment extends ListFragment {
         public void onSectionSelected(String id) {
         }
     };
+    /**
+     * The fragment's current callback object, which is notified of list item
+     * clicks.
+     */
+    private Callbacks mCallbacks = sDummyCallbacks;
+    /**
+     * The title of the book or the title of the parent activity in two-pane mode.
+     */
+    private String mBookTitle;
+    /**
+     * The title of the chapter this fragment is presenting.
+     */
+    private String mChapterTitle;
+    /**
+     * The sections of the chapter this fragment is presenting.
+     */
+    private ArrayList<ChapterSection> mChapterSections;
+    /**
+     * The index in the original JSON's Chapters collection for the chapter this fragment is presenting.
+     */
+    private int mChapterIndex;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -188,5 +170,17 @@ public class ChapterDetailFragment extends ListFragment {
 
     private String getSectionIndex(int position) {
         return mChapterSections.get(position).OriginalSection;
+    }
+
+    /**
+     * A callback interface that all activities containing this fragment must
+     * implement. This mechanism allows activities to be notified of item
+     * selections.
+     */
+    public interface Callbacks {
+        /**
+         * Callback for when an item has been selected.
+         */
+        public void onSectionSelected(String chapterAndVerse);
     }
 }

@@ -14,6 +14,15 @@ public class Chapter {
     private String Outro;
     private List<Section> Sections;
 
+    public Chapter(String name, String title, int chapterCount, String intro, String outro, List<Section> sections) {
+        Name = name;
+        Title = title;
+        ChapterCount = chapterCount;
+        Intro = intro;
+        Outro = outro;
+        Sections = sections;
+    }
+
     public String getName() {
         return Name;
     }
@@ -70,16 +79,8 @@ public class Chapter {
         Sections = sections;
     }
 
-    public Chapter(String name, String title, int chapterCount, String intro, String outro, List<Section> sections) {
-        Name = name;
-        Title = title;
-        ChapterCount = chapterCount;
-        Intro = intro;
-        Outro = outro;
-        Sections = sections;
-    }
-
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return Title;
     }
 }

@@ -16,8 +16,8 @@
     <View
         android:id="@+id/horizontal_rule_1"
         android:layout_width="fill_parent"
-        android:layout_marginBottom="16dp"
         android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:background="#777"
