@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.floydpink.android.bhagavadgita.data.BookData;
+import com.floydpink.android.bhagavadgita.helpers.ShareHelper;
 import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
 import com.floydpink.android.bhagavadgita.models.Chapter;
 import com.floydpink.android.bhagavadgita.models.Section;
@@ -112,6 +113,7 @@ public class SectionDetailActivity extends Activity {
                 finish();
                 return true;
             case R.id.action_share:
+                ShareHelper.ShareSection(this, mSectionShareTitle, mChapterSectionIndicesQueryString);
                 return true;
         }
 

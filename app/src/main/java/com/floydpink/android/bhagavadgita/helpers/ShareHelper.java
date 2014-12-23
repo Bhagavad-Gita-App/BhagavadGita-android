@@ -11,6 +11,20 @@ import com.floydpink.android.bhagavadgita.data.BookData;
 public class ShareHelper {
     private static final String baseUrl = "http://floydpink.github.io/BhagavadGita/share/";
 
+    public static void ShareChapter(Context context, String chapterName) {
+        String chapterTitle = ChapterHelper.getChapterTitle(BookData.Chapters.get(chapterName));
+        Share(context, "Share " + chapterTitle, getChapterLink(chapterName),
+                chapterTitle);
+    }
+
+    public static void ShareSection(Context context, String title, String queryString) {
+        Share(context, "Share " + title, getSectionLink(queryString), title);
+    }
+
+    private static String getSectionLink(String queryString) {
+        return String.format(baseUrl + "?%s", queryString);
+    }
+
     private static void Share(Context context, String subject, String link, String linkTitle) {
         Intent share = new Intent(android.content.Intent.ACTION_SEND);
         share.setType("text/plain");
@@ -23,13 +37,6 @@ public class ShareHelper {
         share.putExtra(Intent.EXTRA_TEXT, link);
 
         context.startActivity(Intent.createChooser(share, subject));
-    }
-
-    public static void ShareChapter(Context context, String chapterName) {
-        String chapterTitle = ChapterHelper.getChapterTitle(BookData.Chapters.get(chapterName));
-        ShareHelper.Share(context, "Share " + chapterTitle,
-                ShareHelper.getChapterLink(chapterName),
-                chapterTitle);
     }
 
     private static String getChapterLink(String chapterName) {
