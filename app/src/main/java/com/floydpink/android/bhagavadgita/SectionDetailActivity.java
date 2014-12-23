@@ -104,6 +104,7 @@ public class SectionDetailActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        Log.d("In method:", "SectionDetailActivity::onOptionsItemSelected");
 
         switch (id) {
             case android.R.id.home:

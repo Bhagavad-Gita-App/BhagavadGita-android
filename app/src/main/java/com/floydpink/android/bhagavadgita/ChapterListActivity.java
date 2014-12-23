@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
+import android.view.MenuItem;
 
+import com.floydpink.android.bhagavadgita.helpers.ShareHelper;
 import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
 
 import java.util.List;
@@ -36,6 +39,11 @@ public class ChapterListActivity extends Activity
      * device.
      */
     private boolean mTwoPane;
+
+    /**
+     * Selected chapter name
+     */
+    private String mChapterName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +94,7 @@ public class ChapterListActivity extends Activity
      */
     @Override
     public void onChapterSelected(String id) {
+        mChapterName = id;
         if (mTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
@@ -117,4 +126,26 @@ public class ChapterListActivity extends Activity
         detailIntent.putExtra(SectionDetailActivity.ARG_CHAPTER_VERSE, chapterAndVerse);
         startActivity(detailIntent);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        Log.d("In method:", "ChapterListActivity::onOptionsItemSelected");
+
+        switch (id) {
+            case android.R.id.home:
+                setResult(RESULT_CANCELED);
+                finish();
+                return true;
+            case R.id.action_share:
+                ShareHelper.ShareChapter(this, mChapterName);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }

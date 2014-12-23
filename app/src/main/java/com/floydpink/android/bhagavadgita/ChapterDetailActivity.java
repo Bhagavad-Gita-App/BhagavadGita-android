@@ -3,7 +3,10 @@ package com.floydpink.android.bhagavadgita;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+
+import com.floydpink.android.bhagavadgita.helpers.ShareHelper;
 
 
 /**
@@ -17,6 +20,11 @@ import android.view.MenuItem;
  */
 public class ChapterDetailActivity extends Activity
         implements ChapterDetailFragment.Callbacks {
+
+    /**
+     * Name of the chapter this activity is presenting
+     */
+    private String mChapterName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +47,9 @@ public class ChapterDetailActivity extends Activity
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
+            mChapterName = getIntent().getStringExtra(ChapterDetailFragment.ARG_CHAPTER_NAME);
             arguments.putString(ChapterDetailFragment.ARG_CHAPTER_NAME,
-                    getIntent().getStringExtra(ChapterDetailFragment.ARG_CHAPTER_NAME));
+                    mChapterName);
             ChapterDetailFragment fragment = new ChapterDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
@@ -55,6 +64,7 @@ public class ChapterDetailActivity extends Activity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        Log.d("In method:", "ChapterDetailActivity::onOptionsItemSelected");
 
         switch (id) {
             case android.R.id.home:
@@ -62,6 +72,7 @@ public class ChapterDetailActivity extends Activity
                 finish();
                 return true;
             case R.id.action_share:
+                ShareHelper.ShareChapter(this, mChapterName);
                 return true;
         }
 

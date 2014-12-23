@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 import com.floydpink.android.bhagavadgita.data.BookData;
 import com.floydpink.android.bhagavadgita.data.ChapterSection;
-import com.floydpink.android.bhagavadgita.data.SectionType;
+import com.floydpink.android.bhagavadgita.helpers.ChapterHelper;
 import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
 
 import java.util.ArrayList;
@@ -81,20 +81,11 @@ public class ChapterDetailFragment extends ListFragment {
             // to load content from a content provider.
             String chapterName = getArguments().getString(ARG_CHAPTER_NAME);
             mChapterSections = BookData.Chapters.get(chapterName);
-            mChapterTitle = getChapterTitle(mChapterSections);
+            mChapterTitle = ChapterHelper.getChapterTitle(mChapterSections);
             mChapterIndex = BookData.ChapterIndexes.get(chapterName);
         }
 
         setHasOptionsMenu(true);
-    }
-
-    private String getChapterTitle(ArrayList<ChapterSection> mChapterSections) {
-        for (ChapterSection section : mChapterSections) {
-            if (section.Type == SectionType.Title) {
-                return section.Content;
-            }
-        }
-        return null;
     }
 
     @Override
