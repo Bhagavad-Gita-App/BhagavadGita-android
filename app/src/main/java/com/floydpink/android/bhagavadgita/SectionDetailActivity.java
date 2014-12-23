@@ -2,12 +2,15 @@ package com.floydpink.android.bhagavadgita;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.opengl.Visibility;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -44,6 +47,11 @@ public class SectionDetailActivity extends Activity {
      */
     private Section mSection;
 
+    /**
+     * The title of section to be used while sharing
+     */
+    private String mSectionShareTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,17 +78,22 @@ public class SectionDetailActivity extends Activity {
 
         setContentView(R.layout.activity_section_detail);
 
+        //set the content
+        Typeface malayalamFont = Typeface.createFromAsset(getAssets(), "fonts/AnjaliOldLipi.ttf");
         TextView speaker = (TextView) findViewById(R.id.speaker);
         String speakerValue = mSection.getSpeaker();
         if (speakerValue != null) {
             speaker.setText(speakerValue);
+            speaker.setTypeface(malayalamFont, Typeface.BOLD);
         } else {
             speaker.setVisibility(View.GONE);
         }
         TextView verse = (TextView) findViewById(R.id.verse);
         verse.setText(mSection.getContent());
+        verse.setTypeface(malayalamFont, Typeface.BOLD_ITALIC);
         TextView meaning = (TextView) findViewById(R.id.meaning);
         meaning.setText(mSection.getMeaning());
+        meaning.setTypeface(malayalamFont, Typeface.NORMAL);
     }
 
     @Override
@@ -99,11 +112,9 @@ public class SectionDetailActivity extends Activity {
 
         switch (id) {
             case android.R.id.home:
-                super.onBackPressed();
+                setResult(RESULT_CANCELED);
+                finish();
                 return true;
-//                setResult(RESULT_CANCELED);
-//                finish();
-//                return true;
             case R.id.action_share:
                 return true;
         }
@@ -123,9 +134,9 @@ public class SectionDetailActivity extends Activity {
 
     private String getSectionDetailActivityTitle(Chapter chapter, int sectionIndex, Section section) {
         String sectionTitle = getSectionTitle(sectionIndex, section.getContent());
-        return String.format("%s%s",
-          getDisplayWidth() > 1080 ? chapter.getTitle() + " - " : "",
-          sectionTitle);
+        mSectionShareTitle = String.format("%s%s", chapter.getTitle() + " - ", sectionTitle);
+        return String.format("%s%s", getDisplayWidth() > 480 ? chapter.getTitle() + " - " : "",
+                sectionTitle);
     }
 
 
@@ -143,15 +154,13 @@ public class SectionDetailActivity extends Activity {
         return ((slokaNumber.indexOf(',') > -1) ? "ശ്ലോകങ്ങൾ " : "ശ്ലോകം ") + slokaNumber;
     }
 
-    private int getDisplayWidth() {
-        // http://stackoverflow.com/a/18712361
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        //int width = size.x;
-        //int height = size.y;
-        Log.d("Display Width: ", Integer.toString(size.x));
-        return size.x;
+    private float getDisplayWidth() {
+        // http://stackoverflow.com/a/11755265
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        // float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        Log.d("Display Width (in dp):", Float.toString(dpWidth));
+        return dpWidth;
     }
 
 }

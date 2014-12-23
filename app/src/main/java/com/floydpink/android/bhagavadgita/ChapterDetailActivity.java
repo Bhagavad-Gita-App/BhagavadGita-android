@@ -71,7 +71,7 @@ public class ChapterDetailActivity extends Activity
     }
 
     @Override
-    public void onItemSelected(String chapterAndVerse) {
+    public void onSectionSelected(String chapterAndVerse) {
         Intent detailIntent = new Intent(this, SectionDetailActivity.class);
         detailIntent.putExtra(SectionDetailActivity.ARG_CHAPTER_VERSE, chapterAndVerse);
         startActivity(detailIntent);

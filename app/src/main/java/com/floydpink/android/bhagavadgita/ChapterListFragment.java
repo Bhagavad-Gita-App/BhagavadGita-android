@@ -45,7 +45,7 @@ public class ChapterListFragment extends ListFragment {
         /**
          * Callback for when an item has been selected.
          */
-        public void onItemSelected(String id);
+        public void onChapterSelected(String id);
     }
 
     /**
@@ -54,7 +54,7 @@ public class ChapterListFragment extends ListFragment {
      */
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
-        public void onItemSelected(String id) {
+        public void onChapterSelected(String id) {
         }
     };
 
@@ -111,7 +111,7 @@ public class ChapterListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(BookData.Book.getChapters().get(position).getName());
+        mCallbacks.onChapterSelected(BookData.Book.getChapters().get(position).getName());
     }
 
     @Override

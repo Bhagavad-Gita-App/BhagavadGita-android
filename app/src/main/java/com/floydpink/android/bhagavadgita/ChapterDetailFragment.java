@@ -69,7 +69,7 @@ public class ChapterDetailFragment extends ListFragment {
         /**
          * Callback for when an item has been selected.
          */
-        public void onItemSelected(String chapterAndVerse);
+        public void onSectionSelected(String chapterAndVerse);
     }
 
     /**
@@ -78,7 +78,7 @@ public class ChapterDetailFragment extends ListFragment {
      */
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
-        public void onItemSelected(String id) {
+        public void onSectionSelected(String id) {
         }
     };
 
@@ -183,7 +183,7 @@ public class ChapterDetailFragment extends ListFragment {
 
         String selectedChapterAndSection = String.format("c=%s&s=%s", mChapterIndex, getSectionIndex(position));
 
-        mCallbacks.onItemSelected(selectedChapterAndSection);
+        mCallbacks.onSectionSelected(selectedChapterAndSection);
     }
 
     private String getSectionIndex(int position) {
