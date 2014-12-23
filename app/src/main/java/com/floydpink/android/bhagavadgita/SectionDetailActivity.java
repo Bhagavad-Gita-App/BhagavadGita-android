@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.floydpink.android.bhagavadgita.data.BookData;
@@ -87,7 +88,8 @@ public class SectionDetailActivity extends Activity {
         TextView verse = (TextView) findViewById(R.id.verse);
         verse.setText(mSection.getContent());
         verse.setTypeface(malayalamFont, Typeface.BOLD_ITALIC);
-        TextView meaning = (TextView) findViewById(R.id.meaning);
+        LinearLayout meaningLayout = (LinearLayout) findViewById(R.id.meaning);
+        TextView meaning = (TextView) meaningLayout.findViewById(R.id.text);
         meaning.setText(mSection.getMeaning());
         meaning.setTypeface(malayalamFont, Typeface.NORMAL);
     }

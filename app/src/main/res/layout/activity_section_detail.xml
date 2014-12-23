@@ -21,6 +21,16 @@
             android:padding="@dimen/activity_vertical_margin"
             android:src="@drawable/ic_launcher" />
 
+        <View
+            android:id="@+id/horizontal_rule_1"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#ff6600"
+            android:gravity="center" />
+
         <include
             android:id="@+id/speaker"
             layout="@layout/chapter_speaker"

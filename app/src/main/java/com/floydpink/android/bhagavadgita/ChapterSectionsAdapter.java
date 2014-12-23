@@ -52,11 +52,6 @@ public class ChapterSectionsAdapter extends BaseAdapter {
         int sectionStyle;
         switch (sectionType) {
             case Verse:
-                sectionStyle = Typeface.BOLD_ITALIC;
-                break;
-            case Speaker:
-            case Intro:
-            case Outro:
                 sectionStyle = Typeface.BOLD;
                 break;
             default:
