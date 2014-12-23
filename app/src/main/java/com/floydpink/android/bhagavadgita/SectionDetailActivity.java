@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import com.floydpink.android.bhagavadgita.data.BookData;
 import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
@@ -59,52 +60,12 @@ public class SectionDetailActivity extends Activity {
         mSection = chapter.getSections().get(sectionIndex);
 
         // set the malayalam title on this activity
-        SpannableString s = new SpannableString(getSectionDetailActivityTitle(chapter, sectionIndex, mSection));
-        s.setSpan(new TypefaceSpan(this, "AnjaliOldLipi.ttf"), 0, s.length(),
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        // Update the action bar title with the TypefaceSpan instance
-        ActionBar actionBar = getActionBar();
-        assert actionBar != null;
-        actionBar.setTitle(s);
+        setActivityTitle(sectionIndex, chapter);
 
         // Show the Up button in the action bar.
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         setContentView(R.layout.activity_section_detail);
-    }
-
-    private String getSectionDetailActivityTitle(Chapter chapter, int sectionIndex, Section section) {
-        String sectionTitle = getSectionTitle(sectionIndex, section.getContent());
-        return String.format("%s%s",
-                getDisplayWidth() > 1080 ? chapter.getTitle() + " - " : "",
-                sectionTitle);
-    }
-
-
-    private String getSectionTitle(int s, String sloka) {
-        String slokaNumber = Integer.toString(s);
-        Pattern regex = Pattern.compile("\\(([0-9]+)\\)", Pattern.DOTALL);
-        Matcher regexMatcher = regex.matcher(sloka);
-        List<String> slokaNumbers = new ArrayList<>();
-        while (regexMatcher.find()) {
-            slokaNumbers.add(regexMatcher.group(1));
-        }
-        if (slokaNumbers.size() > 0) {
-            slokaNumber = TextUtils.join(", ", slokaNumbers);
-        }
-        return ((slokaNumber.indexOf(',') > -1) ? "ശ്ലോകങ്ങൾ " : "ശ്ലോകം ") + slokaNumber;
-    }
-
-    private int getDisplayWidth(){
-        // http://stackoverflow.com/a/18712361
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        //int width = size.x;
-        //int height = size.y;
-        Log.d("Display Width: ", Integer.toString(size.x));
-        return size.x;
     }
 
     @Override
@@ -123,13 +84,59 @@ public class SectionDetailActivity extends Activity {
 
         switch (id) {
             case android.R.id.home:
-                setResult(RESULT_CANCELED);
-                finish();
+                super.onBackPressed();
                 return true;
-            case R.id.action_settings:
+//                setResult(RESULT_CANCELED);
+//                finish();
+//                return true;
+            case R.id.action_share:
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void setActivityTitle(int sectionIndex, Chapter chapter) {
+        SpannableString s = new SpannableString(getSectionDetailActivityTitle(chapter, sectionIndex, mSection));
+        s.setSpan(new TypefaceSpan(this, "AnjaliOldLipi.ttf"), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        // Update the action bar title with the TypefaceSpan instance
+        ActionBar actionBar = getActionBar();
+        assert actionBar != null;
+        actionBar.setTitle(s);
+    }
+
+    private String getSectionDetailActivityTitle(Chapter chapter, int sectionIndex, Section section) {
+        String sectionTitle = getSectionTitle(sectionIndex, section.getContent());
+        return String.format("%s%s",
+          getDisplayWidth() > 1080 ? chapter.getTitle() + " - " : "",
+          sectionTitle);
+    }
+
+
+    private String getSectionTitle(int s, String sloka) {
+        String slokaNumber = Integer.toString(s);
+        Pattern regex = Pattern.compile("\\(([0-9]+)\\)", Pattern.DOTALL);
+        Matcher regexMatcher = regex.matcher(sloka);
+        List<String> slokaNumbers = new ArrayList<>();
+        while (regexMatcher.find()) {
+            slokaNumbers.add(regexMatcher.group(1));
+        }
+        if (slokaNumbers.size() > 0) {
+            slokaNumber = TextUtils.join(", ", slokaNumbers);
+        }
+        return ((slokaNumber.indexOf(',') > -1) ? "ശ്ലോകങ്ങൾ " : "ശ്ലോകം ") + slokaNumber;
+    }
+
+    private int getDisplayWidth() {
+        // http://stackoverflow.com/a/18712361
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        //int width = size.x;
+        //int height = size.y;
+        Log.d("Display Width: ", Integer.toString(size.x));
+        return size.x;
+    }
+
 }

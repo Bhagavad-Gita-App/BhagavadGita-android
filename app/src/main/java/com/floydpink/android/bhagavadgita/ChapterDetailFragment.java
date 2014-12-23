@@ -2,20 +2,21 @@ package com.floydpink.android.bhagavadgita;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.floydpink.android.bhagavadgita.data.BookData;
-import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
 import com.floydpink.android.bhagavadgita.data.ChapterSection;
 import com.floydpink.android.bhagavadgita.data.SectionType;
+import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
 
 import java.util.ArrayList;
 
@@ -101,6 +102,8 @@ public class ChapterDetailFragment extends ListFragment {
             mChapterTitle = getChapterTitle(mChapterSections);
             mChapterIndex = BookData.ChapterIndexes.get(chapterName);
         }
+
+        setHasOptionsMenu(true);
     }
 
     private String getChapterTitle(ArrayList<ChapterSection> mChapterSections) {
@@ -110,6 +113,11 @@ public class ChapterDetailFragment extends ListFragment {
             }
         }
         return null;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_section_detail, menu);
     }
 
     @Override

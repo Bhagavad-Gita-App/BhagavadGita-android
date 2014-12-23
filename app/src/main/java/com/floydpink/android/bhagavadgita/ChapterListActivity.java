@@ -19,11 +19,11 @@ import java.util.List;
  * lead to a {@link ChapterDetailActivity} representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
- * <p>
+ * <p/>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link ChapterListFragment} and the item details
  * (if present) is a {@link ChapterDetailFragment}.
- * <p>
+ * <p/>
  * This activity also implements the required
  * {@link ChapterListFragment.Callbacks} interface
  * to listen for item selections.
