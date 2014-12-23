@@ -3,6 +3,7 @@ package com.floydpink.android.bhagavadgita;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Point;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -11,7 +12,9 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.floydpink.android.bhagavadgita.data.BookData;
 import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
@@ -66,6 +69,18 @@ public class SectionDetailActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         setContentView(R.layout.activity_section_detail);
+
+        TextView speaker = (TextView) findViewById(R.id.speaker);
+        String speakerValue = mSection.getSpeaker();
+        if (speakerValue != null) {
+            speaker.setText(speakerValue);
+        } else {
+            speaker.setVisibility(View.GONE);
+        }
+        TextView verse = (TextView) findViewById(R.id.verse);
+        verse.setText(mSection.getContent());
+        TextView meaning = (TextView) findViewById(R.id.meaning);
+        meaning.setText(mSection.getMeaning());
     }
 
     @Override
