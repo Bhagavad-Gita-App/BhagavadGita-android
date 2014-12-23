@@ -62,12 +62,10 @@ public class BookData {
     private static ArrayList<ChapterSection> hydrateChapterSections(Chapter chapter) {
         ArrayList<ChapterSection> chapterSections = new ArrayList<ChapterSection>();
         String chapterIntro = chapter.getIntro();
-        if (!TextUtils.isEmpty(chapterIntro)) {
-            ChapterSection intro = new ChapterSection();
-            intro.Type = SectionType.Intro;
-            intro.Content = chapterIntro;
-            chapterSections.add(intro);
-        }
+        ChapterSection intro = new ChapterSection();
+        intro.Type = SectionType.Intro;
+        intro.Content = chapterIntro;
+        chapterSections.add(intro);
 
         String chapterTitle = chapter.getTitle();
         if (!TextUtils.isEmpty(chapterTitle)) {

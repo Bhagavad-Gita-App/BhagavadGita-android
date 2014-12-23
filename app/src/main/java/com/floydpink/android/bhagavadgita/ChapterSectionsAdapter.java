@@ -2,6 +2,7 @@ package com.floydpink.android.bhagavadgita;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,9 @@ public class ChapterSectionsAdapter extends BaseAdapter {
         convertView.setTag(holder);
         holder.textView.setText(mChapterSections.get(position).Content);
         holder.textView.setTypeface(malayalamFont, sectionStyle);
+        if (sectionType == SectionType.Intro && TextUtils.isEmpty(mChapterSections.get(position).Content)) {
+            holder.textView.setVisibility(View.GONE);
+        }
         return convertView;
     }
 
