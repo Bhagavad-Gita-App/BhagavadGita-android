@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/text"
@@ -12,6 +12,7 @@
         android:padding="16dp"
         android:text="@string/chapter_meaning"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <View
         android:id="@+id/horizontal_rule_1"
         android:layout_width="fill_parent"

@@ -39,10 +39,10 @@
             android:divider="@null"
             android:dividerHeight="0dp"
             android:drawSelectorOnTop="false"
-            android:paddingTop="0dp"
             android:paddingBottom="0dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
+            android:paddingTop="0dp"
             tools:context=".ChapterDetailFragment">
 
         </ListView>

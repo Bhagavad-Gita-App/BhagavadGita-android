@@ -29,10 +29,14 @@ import java.util.ArrayList;
  */
 public class ChapterDetailFragment extends ListFragment {
     /**
-     * The fragment argument representing the item ID that this fragment
+     * The fragment argument representing the chapter name that this fragment
      * represents.
      */
     public static final String ARG_CHAPTER_NAME = "chapter_name";
+    /**
+     * The fragment argument representing the chapter and section querystring.
+     */
+    public static final String ARG_CHAPTER_SECTION_QUERY_STRING = "chapter_section_query_string";
     /**
      * A dummy implementation of the {@link Callbacks} interface that does
      * nothing. Used only when this fragment is not attached to an activity.
@@ -76,13 +80,15 @@ public class ChapterDetailFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_CHAPTER_NAME)) {
-            // Load the chapter specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
             String chapterName = getArguments().getString(ARG_CHAPTER_NAME);
             mChapterSections = BookData.Chapters.get(chapterName);
-            mChapterTitle = ChapterHelper.getChapterTitle(mChapterSections);
+            mChapterTitle = ChapterHelper.getChapterTitleFromChapterSections(mChapterSections);
             mChapterIndex = BookData.ChapterIndexes.get(chapterName);
+        }
+
+        if (getArguments().containsKey(ARG_CHAPTER_SECTION_QUERY_STRING)) { // navigate to section detail
+            String selectedChapterAndSection = getArguments().getString(ARG_CHAPTER_SECTION_QUERY_STRING);
+            mCallbacks.onSectionSelected(selectedChapterAndSection);
         }
 
         setHasOptionsMenu(true);

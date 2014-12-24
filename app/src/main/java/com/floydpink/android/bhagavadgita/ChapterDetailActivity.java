@@ -3,6 +3,7 @@ package com.floydpink.android.bhagavadgita;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -48,8 +49,12 @@ public class ChapterDetailActivity extends Activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
             mChapterName = getIntent().getStringExtra(ChapterDetailFragment.ARG_CHAPTER_NAME);
-            arguments.putString(ChapterDetailFragment.ARG_CHAPTER_NAME,
-                    mChapterName);
+            String chapterSectionQueryString = getIntent().getStringExtra(ChapterDetailFragment.ARG_CHAPTER_SECTION_QUERY_STRING);
+            arguments.putString(ChapterDetailFragment.ARG_CHAPTER_NAME, mChapterName);
+            if (!TextUtils.isEmpty(chapterSectionQueryString)) {
+                arguments.putString(ChapterDetailFragment.ARG_CHAPTER_SECTION_QUERY_STRING,
+                        chapterSectionQueryString);
+            }
             ChapterDetailFragment fragment = new ChapterDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()

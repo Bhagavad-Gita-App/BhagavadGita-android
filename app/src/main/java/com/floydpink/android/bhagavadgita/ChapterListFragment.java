@@ -30,7 +30,7 @@ public class ChapterListFragment extends ListFragment {
      */
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
-        public void onChapterSelected(String id) {
+        public void onChapterSelected(String chapterName) {
         }
     };
     /**
@@ -144,6 +144,6 @@ public class ChapterListFragment extends ListFragment {
         /**
          * Callback for when an item has been selected.
          */
-        public void onChapterSelected(String id);
+        public void onChapterSelected(String chapterName);
     }
 }

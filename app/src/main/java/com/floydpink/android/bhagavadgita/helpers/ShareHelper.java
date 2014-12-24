@@ -9,10 +9,10 @@ import com.floydpink.android.bhagavadgita.data.BookData;
  * Created by hari on 12/22/14.
  */
 public class ShareHelper {
-    private static final String baseUrl = "http://floydpink.github.io/BhagavadGita/share/";
+    public static final String BASE_URL = "http://floydpink.github.io/BhagavadGita/share/";
 
     public static void ShareChapter(Context context, String chapterName) {
-        String chapterTitle = ChapterHelper.getChapterTitle(BookData.Chapters.get(chapterName));
+        String chapterTitle = ChapterHelper.getChapterTitleFromChapterSections(BookData.Chapters.get(chapterName));
         Share(context, "Share " + chapterTitle, getChapterLink(chapterName),
                 chapterTitle);
     }
@@ -22,7 +22,7 @@ public class ShareHelper {
     }
 
     private static String getSectionLink(String queryString) {
-        return String.format(baseUrl + "?%s", queryString);
+        return String.format(BASE_URL + "?%s", queryString);
     }
 
     private static void Share(Context context, String subject, String link, String linkTitle) {
@@ -40,6 +40,6 @@ public class ShareHelper {
     }
 
     private static String getChapterLink(String chapterName) {
-        return String.format(baseUrl + "?c=%s", BookData.ChapterIndexes.get(chapterName));
+        return String.format(BASE_URL + "?c=%s", BookData.ChapterIndexes.get(chapterName));
     }
 }

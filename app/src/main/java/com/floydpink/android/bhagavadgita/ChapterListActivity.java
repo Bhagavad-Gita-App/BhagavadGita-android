@@ -4,16 +4,15 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.floydpink.android.bhagavadgita.helpers.ChapterHelper;
 import com.floydpink.android.bhagavadgita.helpers.ShareHelper;
 import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
-
-import java.util.List;
 
 /**
  * An activity representing a list of Chapters. This activity
@@ -79,12 +78,31 @@ public class ChapterListActivity extends Activity
         final Intent intent = getIntent();
         final String action = intent.getAction();
 
+        // if the app is launched from a deep link, navigate to the child/grandchild activity
         if (Intent.ACTION_VIEW.equals(action)) {
-            Debug.waitForDebugger();
-            final List<String> segments = intent.getData().getPathSegments();
-            if (segments.size() > 1) {
-
+//  *** UNCOMMENT BELOW TO ATTACH DEBUGGER ***
+//            Log.d("Starting 10 seconds delay:", "Attach the debugger");
+//            Handler handler = new Handler();
+//            handler.postDelayed(new Runnable() {
+//                public void run() {
+            final String url = intent.getDataString();
+            int baseUrlLength = ShareHelper.BASE_URL.length();
+            if (url.indexOf(ShareHelper.BASE_URL) == 0 && url.length() > baseUrlLength) {
+                String queryString = url.substring(baseUrlLength + 1);
+                String[] parts = queryString.split("[=&]");
+                int chapterIndex = -1;
+                int sectionIndex = -1;
+                if (parts.length == 4) {    // deep link to a section
+                    chapterIndex = Integer.parseInt(parts[1]);
+                    sectionIndex = Integer.parseInt(parts[3]);
+                } else if (parts.length == 2) { //deep link to a chapter
+                    chapterIndex = Integer.parseInt(parts[1]);
+                }
+                String chapterName = ChapterHelper.getChapterFromChapterIndex(chapterIndex).getName();
+                selectChapter(chapterName, sectionIndex != -1 ? queryString : "");
             }
+//                }
+//            }, 10000);
         }
     }
 
@@ -93,14 +111,25 @@ public class ChapterListActivity extends Activity
      * indicating that the item with the given ID was selected.
      */
     @Override
-    public void onChapterSelected(String id) {
-        mChapterName = id;
+    public void onChapterSelected(String chapterName) {
+        selectChapter(chapterName);
+    }
+
+    private void selectChapter(String chapterName) {
+        selectChapter(chapterName, "");
+    }
+
+    private void selectChapter(String chapterName, String chapterAndSectionQueryString) {
+        mChapterName = chapterName;
         if (mTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(ChapterDetailFragment.ARG_CHAPTER_NAME, id);
+            arguments.putString(ChapterDetailFragment.ARG_CHAPTER_NAME, chapterName);
+            if (!TextUtils.isEmpty(chapterAndSectionQueryString)) {
+                arguments.putString(ChapterDetailFragment.ARG_CHAPTER_SECTION_QUERY_STRING, chapterAndSectionQueryString);
+            }
             ChapterDetailFragment fragment = new ChapterDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
@@ -111,7 +140,10 @@ public class ChapterListActivity extends Activity
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, ChapterDetailActivity.class);
-            detailIntent.putExtra(ChapterDetailFragment.ARG_CHAPTER_NAME, id);
+            detailIntent.putExtra(ChapterDetailFragment.ARG_CHAPTER_NAME, chapterName);
+            if (!TextUtils.isEmpty(chapterAndSectionQueryString)) {
+                detailIntent.putExtra(ChapterDetailFragment.ARG_CHAPTER_SECTION_QUERY_STRING, chapterAndSectionQueryString);
+            }
             startActivity(detailIntent);
         }
     }

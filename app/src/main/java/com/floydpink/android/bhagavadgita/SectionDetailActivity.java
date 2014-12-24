@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.floydpink.android.bhagavadgita.data.BookData;
+import com.floydpink.android.bhagavadgita.helpers.ChapterHelper;
 import com.floydpink.android.bhagavadgita.helpers.ShareHelper;
 import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
 import com.floydpink.android.bhagavadgita.models.Chapter;
@@ -64,7 +64,7 @@ public class SectionDetailActivity extends Activity {
         int sectionIndex = Integer.parseInt(parts[3]);
 
         //get the section
-        Chapter chapter = BookData.Book.getChapters().get(chapterIndex);
+        Chapter chapter = ChapterHelper.getChapterFromChapterIndex(chapterIndex);
         mSection = chapter.getSections().get(sectionIndex);
 
         // set the malayalam title on this activity
