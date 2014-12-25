@@ -57,7 +57,7 @@ public class SectionDetailActivity extends Activity {
         String chapterAndVerse = getIntent().getStringExtra(ARG_CHAPTER_VERSE);
 
         mChapterSectionIndicesQueryString = chapterAndVerse;
-        Log.d("Chapter And Section Index Query String is ", mChapterSectionIndicesQueryString);
+        Log.i("Chapter And Section Index Query String is ", mChapterSectionIndicesQueryString);
 
         String[] parts = chapterAndVerse.split("[=&]");
         int chapterIndex = Integer.parseInt(parts[1]);
@@ -107,7 +107,7 @@ public class SectionDetailActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        Log.d("In method:", "SectionDetailActivity::onOptionsItemSelected");
+        Log.i("In method:", "SectionDetailActivity::onOptionsItemSelected");
 
         switch (id) {
             case android.R.id.home:
@@ -159,7 +159,7 @@ public class SectionDetailActivity extends Activity {
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         // float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        Log.d("Display Width (in dp):", Float.toString(dpWidth));
+        Log.i("Display Width (in dp):", Float.toString(dpWidth));
         return dpWidth;
     }
 

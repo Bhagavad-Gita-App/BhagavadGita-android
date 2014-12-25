@@ -3,6 +3,7 @@ package com.floydpink.android.bhagavadgita;
 import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -22,6 +23,10 @@ import com.floydpink.android.bhagavadgita.helpers.DeepLinkHelperCallback;
  */
 public class ChapterListFragment extends ListFragment implements DeepLinkHelperCallback {
 
+    /**
+     * Flag to indicate if deep links have been processed yet
+     */
+    private static boolean processedDeepLinks = false;
     /**
      * The serialization (saved instance state) Bundle key representing the
      * activated item position. Only used on tablets.
@@ -57,13 +62,19 @@ public class ChapterListFragment extends ListFragment implements DeepLinkHelperC
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.i("ChapterListFragment method: ", "onCreate");
+        Log.i("processedDeepLinks: ", Boolean.toString(processedDeepLinks));
+
         setListAdapter(new ChapterTitlesAdapter(getActivity()));
-        DeepLinkHelper.checkForDeepLinkIntentAction(this, getActivity());
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (!processedDeepLinks) {
+            DeepLinkHelper.checkForDeepLinkIntentAction(this, getActivity());
+        }
 
         // Restore the previously serialized activated item position.
         if (savedInstanceState != null
@@ -144,6 +155,7 @@ public class ChapterListFragment extends ListFragment implements DeepLinkHelperC
         int chapterIndex = ChapterHelper.getChapterIndexFromChapterName(chapterName);
         setActivatedPosition(chapterIndex); // highlight the list item
         getListView().setSelection(chapterIndex);   // scroll to the selected list item
+        processedDeepLinks = true;
     }
 
     /**

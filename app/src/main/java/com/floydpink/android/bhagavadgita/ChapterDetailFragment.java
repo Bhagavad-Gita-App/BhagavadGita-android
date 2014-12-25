@@ -6,6 +6,7 @@ import android.app.ListFragment;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,6 +29,11 @@ import java.util.ArrayList;
  * on handsets.
  */
 public class ChapterDetailFragment extends ListFragment {
+    /**
+     * Flag to indicate if deep links have been processed yet
+     */
+    private static boolean processedDeepLinks = false;
+
     /**
      * The fragment argument representing the chapter name that this fragment
      * represents.
@@ -79,6 +85,9 @@ public class ChapterDetailFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Log.i("ChapterDetailFragment method: ", "onCreate");
+        Log.i("processedDeepLinks: ", Boolean.toString(processedDeepLinks));
+
         if (getArguments().containsKey(ARG_CHAPTER_NAME)) {
             String chapterName = getArguments().getString(ARG_CHAPTER_NAME);
             mChapterSections = BookData.Chapters.get(chapterName);
@@ -86,9 +95,11 @@ public class ChapterDetailFragment extends ListFragment {
             mChapterIndex = ChapterHelper.getChapterIndexFromChapterName(chapterName);
         }
 
-        if (getArguments().containsKey(ARG_CHAPTER_SECTION_QUERY_STRING)) { // navigate to section detail
+        // navigate to section detail
+        if (!processedDeepLinks && getArguments().containsKey(ARG_CHAPTER_SECTION_QUERY_STRING)) {
             String selectedChapterAndSection = getArguments().getString(ARG_CHAPTER_SECTION_QUERY_STRING);
             mCallbacks.onSectionSelected(selectedChapterAndSection);
+            processedDeepLinks = true;
         }
 
         setHasOptionsMenu(true);

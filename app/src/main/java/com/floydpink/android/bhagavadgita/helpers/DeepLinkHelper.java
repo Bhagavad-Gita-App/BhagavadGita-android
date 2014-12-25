@@ -16,7 +16,7 @@ public class DeepLinkHelper {
         // if the app is launched from a deep link, navigate to the child/grandchild activity
         if (Intent.ACTION_VIEW.equals(action)) {
             //  *** UNCOMMENT BELOW TO ATTACH DEBUGGER ***
-            Log.d("Starting delay:", "Attach the debugger");
+            Log.i("Starting delay:", "Attach the debugger");
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {

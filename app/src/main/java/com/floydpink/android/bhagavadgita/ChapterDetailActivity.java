@@ -23,12 +23,19 @@ public class ChapterDetailActivity extends Activity
         implements ChapterDetailFragment.Callbacks {
 
     /**
+     * Flag to indicate if deep links have been processed yet
+     */
+    private static boolean processedDeepLinks = false;
+
+    /**
      * Name of the chapter this activity is presenting
      */
     private String mChapterName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("ChapterDetailActivity method: ", "onCreate");
+        Log.i("processedDeepLinks: ", Boolean.toString(processedDeepLinks));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chapter_detail);
 
@@ -51,9 +58,10 @@ public class ChapterDetailActivity extends Activity
             mChapterName = getIntent().getStringExtra(ChapterDetailFragment.ARG_CHAPTER_NAME);
             String chapterSectionQueryString = getIntent().getStringExtra(ChapterDetailFragment.ARG_CHAPTER_SECTION_QUERY_STRING);
             arguments.putString(ChapterDetailFragment.ARG_CHAPTER_NAME, mChapterName);
-            if (!TextUtils.isEmpty(chapterSectionQueryString)) {
+            if (!TextUtils.isEmpty(chapterSectionQueryString) && !processedDeepLinks) {
                 arguments.putString(ChapterDetailFragment.ARG_CHAPTER_SECTION_QUERY_STRING,
                         chapterSectionQueryString);
+                processedDeepLinks = true;
             }
             ChapterDetailFragment fragment = new ChapterDetailFragment();
             fragment.setArguments(arguments);
@@ -69,7 +77,7 @@ public class ChapterDetailActivity extends Activity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        Log.d("In method:", "ChapterDetailActivity::onOptionsItemSelected");
+        Log.i("In method:", "ChapterDetailActivity::onOptionsItemSelected");
 
         switch (id) {
             case android.R.id.home:

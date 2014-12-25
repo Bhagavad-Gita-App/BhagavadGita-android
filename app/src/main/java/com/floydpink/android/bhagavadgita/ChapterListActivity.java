@@ -35,6 +35,11 @@ public class ChapterListActivity extends Activity
         implements ChapterListFragment.Callbacks, ChapterDetailFragment.Callbacks, DeepLinkHelperCallback {
 
     /**
+     * Flag to indicate if deep links have been processed yet
+     */
+    private static boolean processedDeepLinks = false;
+
+    /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
@@ -48,6 +53,9 @@ public class ChapterListActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.i("ChapterListActivity method: ", "onCreate");
+        Log.i("processedDeepLinks: ", Boolean.toString(processedDeepLinks));
 
         // set the malayalam title on this activity
         SpannableString s = new SpannableString(getTitle());
@@ -76,7 +84,9 @@ public class ChapterListActivity extends Activity
         }
 
         // If exposing deep links into your app, handle intents here.
-        DeepLinkHelper.checkForDeepLinkIntentAction(this, this);
+        if (!processedDeepLinks) {
+            DeepLinkHelper.checkForDeepLinkIntentAction(this, this);
+        }
     }
 
     /**
@@ -135,7 +145,7 @@ public class ChapterListActivity extends Activity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        Log.d("In method:", "ChapterListActivity::onOptionsItemSelected");
+        Log.i("In method:", "ChapterListActivity::onOptionsItemSelected");
 
         switch (id) {
             case R.id.action_share:
@@ -149,5 +159,6 @@ public class ChapterListActivity extends Activity
     @Override
     public void ProcessDeepLink(String chapterName, String chapterSectionQueryString) {
         selectChapter(chapterName, chapterSectionQueryString);
+        processedDeepLinks = true;
     }
 }
