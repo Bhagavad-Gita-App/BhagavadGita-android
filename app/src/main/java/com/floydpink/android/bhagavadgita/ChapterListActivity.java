@@ -75,7 +75,7 @@ public class ChapterListActivity extends Activity
                     .setActivateOnItemClick(true);
         }
 
-        // TODO: If exposing deep links into your app, handle intents here.
+        // If exposing deep links into your app, handle intents here.
         DeepLinkHelper.checkForDeepLinkIntentAction(this, this);
     }
 
@@ -85,10 +85,6 @@ public class ChapterListActivity extends Activity
      */
     @Override
     public void onChapterSelected(String chapterName) {
-        selectChapter(chapterName);
-    }
-
-    private void selectChapter(String chapterName) {
         selectChapter(chapterName, "");
     }
 
@@ -123,7 +119,8 @@ public class ChapterListActivity extends Activity
 
     /**
      * Callback method from {@link ChapterDetailFragment.Callbacks}
-     * indicating that the item with the given ID was selected.
+     * indicating that the section with the given chapterAndVerse was selected.
+     * (Will get fired only in case of two pane mode)
      */
     @Override
     public void onSectionSelected(String chapterAndVerse) {
@@ -141,10 +138,6 @@ public class ChapterListActivity extends Activity
         Log.d("In method:", "ChapterListActivity::onOptionsItemSelected");
 
         switch (id) {
-            case android.R.id.home:
-                setResult(RESULT_CANCELED);
-                finish();
-                return true;
             case R.id.action_share:
                 ShareHelper.ShareChapter(this, mChapterName);
                 return true;
