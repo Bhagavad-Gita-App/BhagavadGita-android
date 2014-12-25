@@ -40,6 +40,6 @@ public class ShareHelper {
     }
 
     private static String getChapterLink(String chapterName) {
-        return String.format(BASE_URL + "?c=%s", BookData.ChapterIndexes.get(chapterName));
+        return String.format(BASE_URL + "?c=%s", ChapterHelper.getChapterIndexFromChapterName(chapterName));
     }
 }

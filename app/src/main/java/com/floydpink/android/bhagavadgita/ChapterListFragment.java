@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.floydpink.android.bhagavadgita.data.BookData;
+import com.floydpink.android.bhagavadgita.helpers.ChapterHelper;
+import com.floydpink.android.bhagavadgita.helpers.DeepLinkHelper;
+import com.floydpink.android.bhagavadgita.helpers.DeepLinkHelperCallback;
 
 /**
  * A list fragment representing a list of Chapters. This fragment
@@ -17,7 +20,7 @@ import com.floydpink.android.bhagavadgita.data.BookData;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class ChapterListFragment extends ListFragment {
+public class ChapterListFragment extends ListFragment implements DeepLinkHelperCallback {
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -55,6 +58,7 @@ public class ChapterListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         setListAdapter(new ChapterTitlesAdapter(getActivity()));
+        DeepLinkHelper.checkForDeepLinkIntentAction(this, getActivity());
     }
 
     @Override
@@ -133,6 +137,13 @@ public class ChapterListFragment extends ListFragment {
         }
 
         mActivatedPosition = position;
+    }
+
+    @Override
+    public void ProcessDeepLink(String chapterName, String chapterSectionQueryString) {
+        int chapterIndex = ChapterHelper.getChapterIndexFromChapterName(chapterName);
+        setActivatedPosition(chapterIndex); // highlight the list item
+        getListView().setSelection(chapterIndex);   // scroll to the selected list item
     }
 
     /**

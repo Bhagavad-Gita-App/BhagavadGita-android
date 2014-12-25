@@ -83,7 +83,7 @@ public class ChapterDetailFragment extends ListFragment {
             String chapterName = getArguments().getString(ARG_CHAPTER_NAME);
             mChapterSections = BookData.Chapters.get(chapterName);
             mChapterTitle = ChapterHelper.getChapterTitleFromChapterSections(mChapterSections);
-            mChapterIndex = BookData.ChapterIndexes.get(chapterName);
+            mChapterIndex = ChapterHelper.getChapterIndexFromChapterName(chapterName);
         }
 
         if (getArguments().containsKey(ARG_CHAPTER_SECTION_QUERY_STRING)) { // navigate to section detail

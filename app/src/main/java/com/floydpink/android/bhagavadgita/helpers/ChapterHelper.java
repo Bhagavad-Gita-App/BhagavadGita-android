@@ -20,6 +20,10 @@ public class ChapterHelper {
         return null;
     }
 
+    public static int getChapterIndexFromChapterName(String chapterName) {
+        return BookData.ChapterIndexes.get(chapterName);
+    }
+
     public static Chapter getChapterFromChapterIndex(int chapterIndex) {
         return BookData.Book.getChapters().get(chapterIndex);
     }

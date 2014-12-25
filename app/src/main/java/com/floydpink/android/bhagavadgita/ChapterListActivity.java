@@ -10,7 +10,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 
-import com.floydpink.android.bhagavadgita.helpers.ChapterHelper;
+import com.floydpink.android.bhagavadgita.helpers.DeepLinkHelper;
+import com.floydpink.android.bhagavadgita.helpers.DeepLinkHelperCallback;
 import com.floydpink.android.bhagavadgita.helpers.ShareHelper;
 import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
 
@@ -31,7 +32,7 @@ import com.floydpink.android.bhagavadgita.helpers.TypefaceSpan;
  * to listen for item selections.
  */
 public class ChapterListActivity extends Activity
-        implements ChapterListFragment.Callbacks, ChapterDetailFragment.Callbacks {
+        implements ChapterListFragment.Callbacks, ChapterDetailFragment.Callbacks, DeepLinkHelperCallback {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -75,35 +76,7 @@ public class ChapterListActivity extends Activity
         }
 
         // TODO: If exposing deep links into your app, handle intents here.
-        final Intent intent = getIntent();
-        final String action = intent.getAction();
-
-        // if the app is launched from a deep link, navigate to the child/grandchild activity
-        if (Intent.ACTION_VIEW.equals(action)) {
-//  *** UNCOMMENT BELOW TO ATTACH DEBUGGER ***
-//            Log.d("Starting 10 seconds delay:", "Attach the debugger");
-//            Handler handler = new Handler();
-//            handler.postDelayed(new Runnable() {
-//                public void run() {
-            final String url = intent.getDataString();
-            int baseUrlLength = ShareHelper.BASE_URL.length();
-            if (url.indexOf(ShareHelper.BASE_URL) == 0 && url.length() > baseUrlLength) {
-                String queryString = url.substring(baseUrlLength + 1);
-                String[] parts = queryString.split("[=&]");
-                int chapterIndex = -1;
-                int sectionIndex = -1;
-                if (parts.length == 4) {    // deep link to a section
-                    chapterIndex = Integer.parseInt(parts[1]);
-                    sectionIndex = Integer.parseInt(parts[3]);
-                } else if (parts.length == 2) { //deep link to a chapter
-                    chapterIndex = Integer.parseInt(parts[1]);
-                }
-                String chapterName = ChapterHelper.getChapterFromChapterIndex(chapterIndex).getName();
-                selectChapter(chapterName, sectionIndex != -1 ? queryString : "");
-            }
-//                }
-//            }, 10000);
-        }
+        DeepLinkHelper.checkForDeepLinkIntentAction(this, this);
     }
 
     /**
@@ -180,4 +153,8 @@ public class ChapterListActivity extends Activity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void ProcessDeepLink(String chapterName, String chapterSectionQueryString) {
+        selectChapter(chapterName, chapterSectionQueryString);
+    }
 }
