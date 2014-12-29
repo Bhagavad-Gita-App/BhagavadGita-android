@@ -14,32 +14,29 @@ import com.floydpink.android.bhagavadgita.data.BookData;
  */
 public class ChapterTitlesAdapter extends SimpleAdapter {
 
-    private Context Context;
+  private Context Context;
 
-    public Context getContext() {
-        return Context;
-    }
+  public ChapterTitlesAdapter(Context context) {
+    super(context, BookData.ChapterList, R.layout.chapter_list_item, new String[]{"subtitle", "title"}, new int[]{android.R.id.text1, android.R.id.text2});
+    setContext(context);
+  }
 
-    public void setContext(Context context) {
-        Context = context;
-    }
+  @Override
+  public View getView(int position, View convertView, ViewGroup parent) {
+    View view = super.getView(position, convertView, parent);
+    Typeface malayalamFont = Typeface.createFromAsset(getContext().getAssets(), "fonts/AnjaliOldLipi.ttf");
+    TextView textView = (TextView) view.findViewById(android.R.id.text1);
+    textView.setTypeface(malayalamFont);
+    textView = (TextView) view.findViewById(android.R.id.text2);
+    textView.setTypeface(malayalamFont);
+    return view;
+  }
 
-    public ChapterTitlesAdapter(Context context) {
-        super(context, BookData.ChapterList,
-                R.layout.chapter_list_item,
-                new String[]{"subtitle", "title"},
-                new int[]{android.R.id.text1, android.R.id.text2});
-        setContext(context);
-    }
+  public Context getContext() {
+    return Context;
+  }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View view = super.getView(position, convertView, parent);
-        Typeface malayalamFont = Typeface.createFromAsset(getContext().getAssets(), "fonts/AnjaliOldLipi.ttf");
-        TextView textView = (TextView) view.findViewById(android.R.id.text1);
-        textView.setTypeface(malayalamFont);
-        textView = (TextView) view.findViewById(android.R.id.text2);
-        textView.setTypeface(malayalamFont);
-        return view;
-    }
+  public void setContext(Context context) {
+    Context = context;
+  }
 }

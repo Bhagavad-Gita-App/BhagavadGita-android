@@ -6,80 +6,81 @@ import java.util.List;
  * Created by hari on 8/20/14.
  */
 public class Chapter {
-    private String Name;
-    private String Title;
-    private String Subtitle;
-    private int ChapterCount;
-    private String Intro;
-    private String Outro;
-    private List<Section> Sections;
+  private String Name;
+  private String Title;
+  private String Subtitle;
+  private int ChapterCount;
+  private String Intro;
+  private String Outro;
+  private List<Section> Sections;
 
-    public String getName() {
-        return Name;
-    }
+  public Chapter(String name, String title, int chapterCount, String intro, String outro, List<Section> sections) {
+    Name = name;
+    Title = title;
+    ChapterCount = chapterCount;
+    Intro = intro;
+    Outro = outro;
+    Sections = sections;
+  }
 
-    public void setName(String name) {
-        Name = name;
-    }
+  public String getName() {
+    return Name;
+  }
 
-    public String getTitle() {
-        return Title;
-    }
+  public void setName(String name) {
+    Name = name;
+  }
 
-    public void setTitle(String title) {
-        Title = title;
-    }
+  public String getTitle() {
+    return Title;
+  }
 
-    public String getSubtitle() {
-        return Subtitle;
-    }
+  public void setTitle(String title) {
+    Title = title;
+  }
 
-    public void setSubtitle(String subtitle) {
-        Subtitle = subtitle;
-    }
+  public String getSubtitle() {
+    return Subtitle;
+  }
 
-    public int getChapterCount() {
-        return ChapterCount;
-    }
+  public void setSubtitle(String subtitle) {
+    Subtitle = subtitle;
+  }
 
-    public void setChapterCount(int chapterCount) {
-        ChapterCount = chapterCount;
-    }
+  public int getChapterCount() {
+    return ChapterCount;
+  }
 
-    public String getIntro() {
-        return Intro;
-    }
+  public void setChapterCount(int chapterCount) {
+    ChapterCount = chapterCount;
+  }
 
-    public void setIntro(String intro) {
-        Intro = intro;
-    }
+  public String getIntro() {
+    return Intro;
+  }
 
-    public String getOutro() {
-        return Outro;
-    }
+  public void setIntro(String intro) {
+    Intro = intro;
+  }
 
-    public void setOutro(String outro) {
-        Outro = outro;
-    }
+  public String getOutro() {
+    return Outro;
+  }
 
-    public List<Section> getSections() {
-        return Sections;
-    }
+  public void setOutro(String outro) {
+    Outro = outro;
+  }
 
-    public void setSections(List<Section> sections) {
-        Sections = sections;
-    }
+  public List<Section> getSections() {
+    return Sections;
+  }
 
-    public Chapter(String name, String title, int chapterCount, String intro, String outro, List<Section> sections) {
-        Name = name;
-        Title = title;
-        ChapterCount = chapterCount;
-        Intro = intro;
-        Outro = outro;
-        Sections = sections;
-    }
+  public void setSections(List<Section> sections) {
+    Sections = sections;
+  }
 
-    @Override public String toString() {
-        return Title;
-    }
+  @Override
+  public String toString() {
+    return Title;
+  }
 }

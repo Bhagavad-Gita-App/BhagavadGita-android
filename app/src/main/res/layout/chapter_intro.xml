@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/text"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:padding="16dp"
-    android:text="@string/chapter_intro"
-    android:textAppearance="?android:attr/textAppearanceSmall" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/activity_vertical_margin"
+        android:src="@drawable/ic_launcher"/>
+
+    <TextView android:id="@+id/text"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:padding="16dp"
+              android:text="@string/chapter_intro"
+              android:textAppearance="?android:attr/textAppearanceSmall"/>
+</LinearLayout>
+

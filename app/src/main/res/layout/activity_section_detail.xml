@@ -1,0 +1,54 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:orientation="vertical"
+                  android:paddingBottom="@dimen/activity_vertical_margin"
+                  android:paddingLeft="@dimen/activity_horizontal_margin"
+                  android:paddingRight="@dimen/activity_horizontal_margin"
+                  android:paddingTop="@dimen/activity_vertical_margin"
+                  tools:context="com.floydpink.android.bhagavadgita.SectionDetailActivity">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_vertical_margin"
+            android:src="@drawable/ic_launcher"/>
+
+        <View
+            android:id="@+id/horizontal_rule_1"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#ff6600"
+            android:gravity="center"/>
+
+        <include
+            android:id="@+id/speaker"
+            layout="@layout/chapter_speaker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <include
+            android:id="@+id/verse"
+            layout="@layout/chapter_verse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <include
+            android:id="@+id/meaning"
+            layout="@layout/chapter_meaning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</ScrollView>

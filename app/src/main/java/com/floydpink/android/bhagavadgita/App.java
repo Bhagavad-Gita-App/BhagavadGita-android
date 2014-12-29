@@ -7,15 +7,20 @@ import android.content.Context;
  * Created by hari on 8/21/14.
  */
 public class App extends Application {
-    private static Context mContext;
+  /**
+   * Flag to indicate if deep links have been processed yet
+   */
+  public static boolean processedDeepLinks = false;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        mContext = this;
-    }
+  private static Context mContext;
 
-    public static Context getContext(){
-        return mContext;
-    }
+  public static Context getContext() {
+    return mContext;
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    mContext = this;
+  }
 }

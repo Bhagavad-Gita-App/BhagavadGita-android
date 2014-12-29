@@ -4,61 +4,62 @@ package com.floydpink.android.bhagavadgita.models;
  * Created by hari on 8/20/14.
  */
 public class Section {
-    private int SectionCount;
-    private int SlokaCount;
-    private String Content;
-    private String Meaning;
-    private String Speaker;
+  private int SectionCount;
+  private int SlokaCount;
+  private String Content;
+  private String Meaning;
+  private String Speaker;
 
-    public int getSectionCount() {
-        return SectionCount;
-    }
+  public Section(int sectionCount, int slokaCount, String content, String meaning, String speaker) {
+    SectionCount = sectionCount;
+    SlokaCount = slokaCount;
+    Content = content;
+    Meaning = meaning;
+    Speaker = speaker;
+  }
 
-    public void setSectionCount(int sectionCount) {
-        SectionCount = sectionCount;
-    }
+  public int getSectionCount() {
+    return SectionCount;
+  }
 
-    public int getSlokaCount() {
-        return SlokaCount;
-    }
+  public void setSectionCount(int sectionCount) {
+    SectionCount = sectionCount;
+  }
 
-    public void setSlokaCount(int slokaCount) {
-        SlokaCount = slokaCount;
-    }
+  public int getSlokaCount() {
+    return SlokaCount;
+  }
 
-    public String getContent() {
-        return Content;
-    }
+  public void setSlokaCount(int slokaCount) {
+    SlokaCount = slokaCount;
+  }
 
-    public void setContent(String content) {
-        Content = content;
-    }
+  public String getContent() {
+    return Content;
+  }
 
-    public String getMeaning() {
-        return Meaning;
-    }
+  public void setContent(String content) {
+    Content = content;
+  }
 
-    public void setMeaning(String meaning) {
-        Meaning = meaning;
-    }
+  public String getMeaning() {
+    return Meaning;
+  }
 
-    public String getSpeaker() {
-        return Speaker;
-    }
+  public void setMeaning(String meaning) {
+    Meaning = meaning;
+  }
 
-    public void setSpeaker(String speaker) {
-        Speaker = speaker;
-    }
+  public String getSpeaker() {
+    return Speaker;
+  }
 
-    public Section(int sectionCount, int slokaCount, String content, String meaning, String speaker) {
-        SectionCount = sectionCount;
-        SlokaCount = slokaCount;
-        Content = content;
-        Meaning = meaning;
-        Speaker = speaker;
-    }
+  public void setSpeaker(String speaker) {
+    Speaker = speaker;
+  }
 
-    @Override public String toString() {
-        return Content;
-    }
+  @Override
+  public String toString() {
+    return Content;
+  }
 }

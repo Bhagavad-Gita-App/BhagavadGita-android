@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/text"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:padding="16dp"
-    android:text="@string/chapter_verse"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    android:background="#666"
-    android:textColor="#fff"
-    android:textStyle="bold|italic" />
+<TextView android:id="@+id/text"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:background="#e2e2e2"
+          android:gravity="center"
+          android:padding="16dp"
+          android:text="@string/chapter_verse"
+          android:textAppearance="?android:attr/textAppearanceMedium"
+          android:textStyle="bold|italic"/>

@@ -6,27 +6,27 @@ import java.util.List;
  * Created by hari on 8/20/14.
  */
 public class Book {
-    private String BookTitle;
-    private List<Chapter> Chapters;
+  private String BookTitle;
+  private List<Chapter> Chapters;
 
-    public String getBookTitle() {
-        return BookTitle;
-    }
+  public Book(String bookTitle, List<Chapter> chapters) {
+    BookTitle = bookTitle;
+    Chapters = chapters;
+  }
 
-    public void setBookTitle(String bookTitle) {
-        BookTitle = bookTitle;
-    }
+  public String getBookTitle() {
+    return BookTitle;
+  }
 
-    public List<Chapter> getChapters() {
-        return Chapters;
-    }
+  public void setBookTitle(String bookTitle) {
+    BookTitle = bookTitle;
+  }
 
-    public void setChapters(List<Chapter> chapters) {
-        Chapters = chapters;
-    }
+  public List<Chapter> getChapters() {
+    return Chapters;
+  }
 
-    public Book(String bookTitle, List<Chapter> chapters) {
-        BookTitle = bookTitle;
-        Chapters = chapters;
-    }
+  public void setChapters(List<Chapter> chapters) {
+    Chapters = chapters;
+  }
 }
