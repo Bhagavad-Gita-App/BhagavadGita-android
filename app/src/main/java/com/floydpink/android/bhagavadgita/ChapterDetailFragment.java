@@ -171,7 +171,7 @@ public class ChapterDetailFragment extends ListFragment {
     public void onListItemClick(ListView listView, View view, int position, long id) {
         super.onListItemClick(listView, view, position, id);
 
-        String selectedChapterAndSection = String.format("c=%s&s=%s", mChapterIndex, getSectionIndex(position));
+        String selectedChapterAndSection = String.format("%s/%s/", mChapterIndex, getSectionIndex(position));
 
         mCallbacks.onSectionSelected(selectedChapterAndSection);
     }

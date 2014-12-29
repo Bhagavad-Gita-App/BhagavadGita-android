@@ -21,10 +21,6 @@ public class ShareHelper {
         Share(context, "Share " + title, getSectionLink(queryString), title);
     }
 
-    private static String getSectionLink(String queryString) {
-        return String.format(BASE_URL + "?%s", queryString);
-    }
-
     private static void Share(Context context, String subject, String link, String linkTitle) {
         Intent share = new Intent(android.content.Intent.ACTION_SEND);
         share.setType("text/plain");
@@ -40,6 +36,11 @@ public class ShareHelper {
     }
 
     private static String getChapterLink(String chapterName) {
-        return String.format(BASE_URL + "?c=%s", ChapterHelper.getChapterIndexFromChapterName(chapterName));
+        return BASE_URL + ChapterHelper.getChapterIndexFromChapterName(chapterName);
     }
+
+    private static String getSectionLink(String queryString) {
+        return BASE_URL + queryString;
+    }
+
 }

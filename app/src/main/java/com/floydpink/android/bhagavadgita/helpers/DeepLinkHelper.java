@@ -23,15 +23,15 @@ public class DeepLinkHelper {
                     final String url = intent.getDataString();
                     int baseUrlLength = ShareHelper.BASE_URL.length();
                     if (url.indexOf(ShareHelper.BASE_URL) == 0 && url.length() > baseUrlLength) {
-                        String queryString = url.substring(baseUrlLength + 1);
-                        String[] parts = queryString.split("[=&]");
+                        String queryString = url.substring(baseUrlLength);
+                        String[] parts = queryString.split("[/]");
                         int chapterIndex = -1;
                         int sectionIndex = -1;
-                        if (parts.length == 4) {    // deep link to a section
-                            chapterIndex = Integer.parseInt(parts[1]);
-                            sectionIndex = Integer.parseInt(parts[3]);
-                        } else if (parts.length == 2) { //deep link to a chapter
-                            chapterIndex = Integer.parseInt(parts[1]);
+                        if (parts.length == 2) {    // deep link to a section
+                            chapterIndex = Integer.parseInt(parts[0]);
+                            sectionIndex = Integer.parseInt(parts[1]);
+                        } else if (parts.length == 1) { //deep link to a chapter
+                            chapterIndex = Integer.parseInt(parts[0]);
                         }
                         String chapterName = ChapterHelper.getChapterFromChapterIndex(chapterIndex).getName();
                         context.ProcessDeepLink(chapterName, sectionIndex != -1 ? queryString : "");

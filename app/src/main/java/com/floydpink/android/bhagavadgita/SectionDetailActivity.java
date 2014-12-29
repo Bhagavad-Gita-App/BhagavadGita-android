@@ -59,9 +59,9 @@ public class SectionDetailActivity extends Activity {
         mChapterSectionIndicesQueryString = chapterAndVerse;
         Log.i("Chapter And Section Index Query String is ", mChapterSectionIndicesQueryString);
 
-        String[] parts = chapterAndVerse.split("[=&]");
-        int chapterIndex = Integer.parseInt(parts[1]);
-        int sectionIndex = Integer.parseInt(parts[3]);
+        String[] parts = chapterAndVerse.split("[/]");
+        int chapterIndex = Integer.parseInt(parts[0]);
+        int sectionIndex = Integer.parseInt(parts[1]);
 
         //get the section
         Chapter chapter = ChapterHelper.getChapterFromChapterIndex(chapterIndex);
